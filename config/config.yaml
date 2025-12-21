@@ -1,0 +1,42 @@
+# https://goframe.org/docs/web/server-config-file-template
+server:
+  address:     ":8000"
+  openapiPath: "/api.json"
+  swaggerPath: "/swagger"
+
+# https://goframe.org/docs/core/glog-config
+logger:
+  level : "all"
+  stdout: true
+
+# https://goframe.org/docs/core/gdb-config-file
+database:
+  default:
+    debug: true
+    link: "mysql:root:123456@tcp(127.0.0.1:3306)/peiwan"
+
+
+# Redis 配置示例
+redis:
+  # 单实例配置示例1
+  default:
+    address: 127.0.0.1:6379
+    db:      1
+    idleTimeout: 600
+
+
+# jwt 配置
+jwt:
+  admin:  # 后台JWT配置
+    secret: "admin_secret_key"
+    expire: 24
+  frontend:  # 前台JWT配置
+    secret: "frontend_secret_key"
+    expire: 720
+
+# jwt 配置
+pay:
+  recharge:  # 充值支付通知地址
+    notify: "http://r657fb73.natappfree.cc/api/v1/frontend/recharge/notify"
+  order:  # 订单支付通知地址
+    notify: "http://v6f68e4a.natappfree.cc/api/v1/frontend/order/notify"

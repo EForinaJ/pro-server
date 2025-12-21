@@ -1,0 +1,85 @@
+// ==========================================================================
+// Code generated and maintained by GoFrame CLI tool. DO NOT EDIT.
+// ==========================================================================
+
+package internal
+
+import (
+	"context"
+
+	"github.com/gogf/gf/v2/database/gdb"
+	"github.com/gogf/gf/v2/frame/g"
+)
+
+// SysConfigDao is the data access object for the table sys_config.
+type SysConfigDao struct {
+	table   string           // table is the underlying table name of the DAO.
+	group   string           // group is the database configuration group name of the current DAO.
+	columns SysConfigColumns // columns contains all the column names of Table for convenient usage.
+}
+
+// SysConfigColumns defines and stores column names for the table sys_config.
+type SysConfigColumns struct {
+	Id         string // 参数主键
+	Name       string // 参数名称
+	Key        string // 参数键名
+	Value      string // 参数键值
+	CreateTime string // 创建时间
+	UpdateTime string // 更新时间
+	Remark     string // 备注
+}
+
+// sysConfigColumns holds the columns for the table sys_config.
+var sysConfigColumns = SysConfigColumns{
+	Id:         "id",
+	Name:       "name",
+	Key:        "key",
+	Value:      "value",
+	CreateTime: "create_time",
+	UpdateTime: "update_time",
+	Remark:     "remark",
+}
+
+// NewSysConfigDao creates and returns a new DAO object for table data access.
+func NewSysConfigDao() *SysConfigDao {
+	return &SysConfigDao{
+		group:   "default",
+		table:   "sys_config",
+		columns: sysConfigColumns,
+	}
+}
+
+// DB retrieves and returns the underlying raw database management object of the current DAO.
+func (dao *SysConfigDao) DB() gdb.DB {
+	return g.DB(dao.group)
+}
+
+// Table returns the table name of the current DAO.
+func (dao *SysConfigDao) Table() string {
+	return dao.table
+}
+
+// Columns returns all column names of the current DAO.
+func (dao *SysConfigDao) Columns() SysConfigColumns {
+	return dao.columns
+}
+
+// Group returns the database configuration group name of the current DAO.
+func (dao *SysConfigDao) Group() string {
+	return dao.group
+}
+
+// Ctx creates and returns a Model for the current DAO. It automatically sets the context for the current operation.
+func (dao *SysConfigDao) Ctx(ctx context.Context) *gdb.Model {
+	return dao.DB().Model(dao.table).Safe().Ctx(ctx)
+}
+
+// Transaction wraps the transaction logic using function f.
+// It rolls back the transaction and returns the error if function f returns a non-nil error.
+// It commits the transaction and returns nil if function f returns nil.
+//
+// Note: Do not commit or roll back the transaction in function f,
+// as it is automatically handled by this function.
+func (dao *SysConfigDao) Transaction(ctx context.Context, f func(ctx context.Context, tx gdb.TX) error) (err error) {
+	return dao.Ctx(ctx).Transaction(ctx, f)
+}

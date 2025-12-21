@@ -1,0 +1,19 @@
+package witkey
+
+import (
+	"context"
+
+	v1 "server/app/admin/api/witkey/v1"
+	"server/app/admin/service"
+)
+
+func (c *ControllerV1) GetDetail(ctx context.Context, req *v1.GetDetailReq) (res *v1.GetDetailRes, err error) {
+	detail, err := service.Witkey().GetDetail(ctx, req.Id)
+	if err != nil {
+		return nil, err
+	}
+	res = &v1.GetDetailRes{
+		Detail: detail,
+	}
+	return
+}

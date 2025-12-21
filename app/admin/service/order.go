@@ -1,0 +1,48 @@
+package service
+
+import (
+	"context"
+	dao_order "server/app/admin/dao/order"
+	dto_order "server/app/admin/dto/order"
+)
+
+// 定义显示接口
+type IOrder interface {
+	GetLogs(ctx context.Context, req *dto_order.Log) (total int, res []*dao_order.Log, err error)
+	GetList(ctx context.Context, req *dto_order.Query) (total int, res []*dao_order.List, err error)
+	GetDetail(ctx context.Context, id int64) (res *dao_order.Detail, err error)
+	GetWitkeyList(ctx context.Context, req *dto_order.WitkeyQuery) (total int, res []*dao_order.WitkeyList, err error)
+
+	// 创建订单
+	Create(ctx context.Context, req *dto_order.Create) (err error)
+
+	Refund(ctx context.Context, req *dto_order.Refund) (err error)
+	Delete(ctx context.Context, ids []int64) (err error)
+	Distribute(ctx context.Context, req *dto_order.Distribute) (err error)
+	Paid(ctx context.Context, id int64) (err error)
+	AddDiscount(ctx context.Context, req *dto_order.AddDiscount) (err error)
+	Cancel(ctx context.Context, id int64) (err error)
+
+	CheckCanCreate(ctx context.Context) (res bool, err error)
+	CheckPaid(ctx context.Context, id int64) (err error)
+	CheckCancel(ctx context.Context, id int64) (err error)
+	CheckDiscount(ctx context.Context, req *dto_order.AddDiscount) (err error)
+	CheckRefund(ctx context.Context, req *dto_order.Refund) (err error)
+	CheckDistribute(ctx context.Context, req *dto_order.Distribute) (err error)
+}
+
+// 定义接口变量
+var localOrder IOrder
+
+// 定义一个获取接口的方法
+func Order() IOrder {
+	if localOrder == nil {
+		panic("implement not found for interface IOrder, forgot register?")
+	}
+	return localOrder
+}
+
+// 定义一个接口实现的注册方法
+func RegisterOrder(i IOrder) {
+	localOrder = i
+}
