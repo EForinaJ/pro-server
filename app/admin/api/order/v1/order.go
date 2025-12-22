@@ -24,15 +24,6 @@ type GetDetailRes struct {
 	*dao_order.Detail
 }
 
-type GetWitkeyListReq struct {
-	g.Meta `path:"/order/witkey/list" method:"get" tags:"订单" summary:"打手列表"`
-	*dto_order.WitkeyQuery
-}
-type GetWitkeyListRes struct {
-	Total int                     `json:"total" dc:"总数"`
-	List  []*dao_order.WitkeyList `json:"list" dc:"打手列表"`
-}
-
 type RefundReq struct {
 	g.Meta `path:"/order/refund" method:"post" tags:"订单" summary:"订单退款"`
 	*dto_order.Refund
@@ -53,12 +44,6 @@ type GetLogsRes struct {
 	Total int              `json:"total" dc:"总数"`
 	List  []*dao_order.Log `json:"list" dc:"订单操作日志列表"`
 }
-
-type DistributeReq struct {
-	g.Meta `path:"/order/distribute" method:"post" tags:"订单" summary:"关联打手"`
-	*dto_order.Distribute
-}
-type DistributeRes struct{}
 
 type DeleteReq struct {
 	g.Meta `path:"/order/delete" method:"post" tags:"订单" summary:"删除订单"`

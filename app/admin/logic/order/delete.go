@@ -23,28 +23,6 @@ func (s *sOrder) Delete(ctx context.Context, ids []int64) (err error) {
 		}
 	}()
 
-	projectId, err := tx.Model(dao.SysProject.Table()).
-		WhereIn(dao.SysProject.Columns().OrderId, ids).
-		Fields(dao.SysProject.Columns().Id).
-		Array()
-	if err != nil {
-		return utils_error.Err(response.DB_READ_ERROR)
-	}
-
-	_, err = tx.Model(dao.SysProjectLog.Table()).
-		WhereIn(dao.SysProjectLog.Columns().ProjectId, projectId).
-		Delete()
-	if err != nil {
-		return utils_error.Err(response.DB_SAVE_ERROR)
-	}
-
-	_, err = tx.Model(dao.SysProject.Table()).
-		WhereIn(dao.SysProject.Columns().Id, projectId).
-		Delete()
-	if err != nil {
-		return utils_error.Err(response.DB_SAVE_ERROR)
-	}
-
 	_, err = tx.Model(dao.SysOrderLog.Table()).
 		WhereIn(dao.SysOrderLog.Columns().OrderId, ids).
 		Delete()

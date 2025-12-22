@@ -3,13 +3,13 @@ package router
 import (
 	"server/app/admin/controller/account"
 	"server/app/admin/controller/category"
+	"server/app/admin/controller/distribute"
 	"server/app/admin/controller/level"
 	"server/app/admin/controller/witkey"
 
 	"server/app/admin/controller/auth"
 	"server/app/admin/controller/bill"
 	"server/app/admin/controller/game"
-	"server/app/admin/controller/onboarding"
 	"server/app/admin/controller/recharge"
 
 	"server/app/admin/controller/dict_data"
@@ -20,7 +20,6 @@ import (
 	"server/app/admin/controller/order"
 	"server/app/admin/controller/permission"
 	"server/app/admin/controller/product"
-	"server/app/admin/controller/project"
 	"server/app/admin/controller/role"
 	"server/app/admin/controller/site"
 	"server/app/admin/controller/system"
@@ -60,19 +59,18 @@ func LoadRouter(s *ghttp.Server) {
 			user.NewV1(),
 			witkey.NewV1(),
 			level.NewV1(),
-			onboarding.NewV1(),
 			game.NewV1(),
 			category.NewV1(),
 			title.NewV1(),
 
 			product.NewV1(),
 			order.NewV1(),
+			distribute.NewV1(),
 			recharge.NewV1(),
 
 			bill.NewV1(),
 			withdraw.NewV1(),
 			system.NewV1(),
-			project.NewV1(),
 		// grade.NewV1(),
 		// vip.NewV1(),
 

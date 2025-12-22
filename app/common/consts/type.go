@@ -13,12 +13,10 @@ const (
 )
 
 const (
-	OrderLogTypeDistribute   = 1 // 添加项目打手
-	OrderLogTypeRefund       = 2 // 手动退款
-	OrderLogTypePayment      = 3 // 确认支付
-	OrderLogTypeAddDiscount  = 4 // 添加优惠
-	OrderLogTypeChangeWitkey = 5 // 变更威客
-	OrderLogTypeCancel       = 6 // 关闭订单
+	OrderLogTypePayment     = 1 // 确认支付
+	OrderLogTypeAddDiscount = 2 // 添加优惠
+	OrderLogTypeRefund      = 3 // 手动退款
+	OrderLogTypeCancel      = 4 // 关闭订单
 )
 
 const (
@@ -66,10 +64,10 @@ const (
 )
 
 const (
-	BillTypeRecharge             = 1 // 账户充值
-	BillTypeRefund               = 2 // 商品退款
-	BillTypeOrder                = 3 // 购买商品
-	BillTypeSettlementCommission = 4 // 结算佣金
+	BillTypeRecharge = 1 // 账户充值
+	BillTypeRefund   = 2 // 商品退款
+	BillTypeOrder    = 3 // 购买商品
+	// BillTypeSettlementCommission = 4 // 结算佣金
 )
 
 const (
@@ -78,12 +76,6 @@ const (
 	RechargeTypeManual = 3 // 客服预存
 )
 
-const (
-	ProjectLogTypeSettlement = 1 // 结算
-	ProjectLogTypeCancel     = 2 // 取消
-	ProjectLogTypeAftersales = 4 // 售后退款
-	ProjectLogTypeCreate     = 3 // 创建
-)
 const (
 	ExperienceTypeCheckIn = 1 // 签到经验
 	ExperienceTypePayment = 2 // 下单购买

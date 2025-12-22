@@ -53,18 +53,13 @@ func (s *sOrder) GetList(ctx context.Context, req *dto_order.Query) (total int, 
 		//  下单用户
 		user, err := dao.SysUser.Ctx(ctx).
 			Where(dao.SysUser.Columns().Id, v.UserId).
-			Fields(dao.SysUser.Columns().Name,
-				dao.SysUser.Columns().Avatar).
-			One()
+			Value(dao.SysUser.Columns().Name)
 		if err != nil {
 			return 0, nil, utils_error.Err(response.DB_READ_ERROR)
 		}
 
-		entity.User = &dao_order.User{
-			Id:     v.UserId,
-			Name:   gconv.String(user.GMap().Get(dao.SysUser.Columns().Name)),
-			Avatar: gconv.String(user.GMap().Get(dao.SysUser.Columns().Avatar)),
-		}
+		entity.User = user.String()
+
 		// 商品内容
 		product, err := dao.SysProduct.Ctx(ctx).
 			Where(dao.SysProduct.Columns().Id, v.ProductId).

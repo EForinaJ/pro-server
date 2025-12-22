@@ -93,14 +93,14 @@ func getTransactionCode(ctx context.Context, entity *entity.SysUserBill) (code s
 			return "", utils_error.Err(response.DB_READ_ERROR)
 		}
 		return obj.String(), nil
-	case consts.BillTypeSettlementCommission:
-		obj, err := dao.SysProject.Ctx(ctx).
-			Where(dao.SysProject.Columns().Id, entity.RelatedId).
-			Value(dao.SysProject.Columns().Code)
-		if err != nil {
-			return "", utils_error.Err(response.DB_READ_ERROR)
-		}
-		return obj.String(), nil
+		// case consts.BillTypeSettlementCommission:
+		// 	obj, err := dao.SysProject.Ctx(ctx).
+		// 		Where(dao.SysProject.Columns().Id, entity.RelatedId).
+		// 		Value(dao.SysProject.Columns().Code)
+		// 	if err != nil {
+		// 		return "", utils_error.Err(response.DB_READ_ERROR)
+		// 	}
+		// 	return obj.String(), nil
 	}
 
 	return
