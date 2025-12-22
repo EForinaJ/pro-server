@@ -46,6 +46,7 @@ func (s *sOrder) CheckDistribute(ctx context.Context, req *dto_order.Distribute)
 	exist, err := dao.SysOrderWitkey.Ctx(ctx).
 		Where(dao.SysOrderWitkey.Columns().OrderId, req.Id).
 		Where(dao.SysOrderWitkey.Columns().WitkeyId, req.WitkeyId).
+		Where(dao.SysOrderWitkey.Columns().IsReplaced, consts.Not).
 		Exist()
 	if err != nil {
 		return utils_error.Err(response.DB_READ_ERROR)

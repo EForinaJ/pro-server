@@ -43,15 +43,14 @@ func (s *sOrder) AddDiscount(ctx context.Context, req *dto_order.AddDiscount) (e
 		return utils_error.Err(response.DB_SAVE_ERROR)
 	}
 	//  添加日志
-	orderLogMap := g.Map{
+
+	_, err = tx.Model(dao.SysOrderLog.Table()).Data(g.Map{
 		dao.SysOrderLog.Columns().OrderId:    req.Id,
 		dao.SysOrderLog.Columns().CreateTime: gtime.Now(),
 		dao.SysOrderLog.Columns().ManageId:   ctx.Value("userId"),
 		dao.SysOrderLog.Columns().Type:       consts.OrderLogTypeAddDiscount,
 		dao.SysOrderLog.Columns().Content:    "添加优惠金额",
-	}
-
-	_, err = tx.Model(dao.SysOrderLog.Table()).Data(orderLogMap).Insert()
+	}).Insert()
 	if err != nil {
 		return utils_error.Err(response.DB_SAVE_ERROR)
 	}

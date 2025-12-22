@@ -90,7 +90,9 @@ func (s *sOrder) GetDetail(ctx context.Context, id int64) (res *dao_order.Detail
 	if orderInfo.Status != consts.OrderStatusPendingPayment {
 		var list []*entity.SysOrderWitkey
 		err = dao.SysOrderWitkey.Ctx(ctx).
-			Where(dao.SysOrderWitkey.Columns().OrderId, id).Scan(&list)
+			Where(dao.SysOrderWitkey.Columns().OrderId, id).
+			Where(dao.SysOrderWitkey.Columns().IsReplaced, consts.Not).
+			Scan(&list)
 		if err != nil {
 			return nil, utils_error.Err(response.DB_READ_ERROR)
 		}

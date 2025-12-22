@@ -20,14 +20,20 @@ type SysOrderWitkeyDao struct {
 
 // SysOrderWitkeyColumns defines and stores column names for the table sys_order_witkey.
 type SysOrderWitkeyColumns struct {
-	OrderId  string //
-	WitkeyId string //
+	OrderId    string //
+	WitkeyId   string //
+	IsReplaced string //
+	Reason     string //
+	CreateTime string //
 }
 
 // sysOrderWitkeyColumns holds the columns for the table sys_order_witkey.
 var sysOrderWitkeyColumns = SysOrderWitkeyColumns{
-	OrderId:  "order_id",
-	WitkeyId: "witkey_id",
+	OrderId:    "order_id",
+	WitkeyId:   "witkey_id",
+	IsReplaced: "is_replaced",
+	Reason:     "reason",
+	CreateTime: "create_time",
 }
 
 // NewSysOrderWitkeyDao creates and returns a new DAO object for table data access.

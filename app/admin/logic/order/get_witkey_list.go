@@ -14,15 +14,15 @@ import (
 
 // GetWitkeyList implements service.IOrder.
 func (s *sOrder) GetWitkeyList(ctx context.Context, req *dto_order.WitkeyQuery) (total int, res []*dao_order.WitkeyList, err error) {
-	m := dao.SysOrderWitkeyAcceptLog.Ctx(ctx).
+	m := dao.SysOrderWitkey.Ctx(ctx).
 		Page(req.Page, req.Limit).
-		OrderDesc(dao.SysOrderWitkeyAcceptLog.Columns().CreateTime)
-	m = m.WhereIn(dao.SysOrderWitkeyAcceptLog.Columns().OrderId, req.Id)
+		OrderDesc(dao.SysOrderWitkey.Columns().CreateTime)
+	m = m.WhereIn(dao.SysOrderWitkey.Columns().OrderId, req.Id)
 	total, err = m.Count()
 	if err != nil {
 		return 0, nil, utils_error.Err(response.DB_READ_ERROR)
 	}
-	var list []*entity.SysOrderWitkeyAcceptLog
+	var list []*entity.SysOrderWitkey
 	err = m.Scan(&list)
 	if err != nil {
 		return 0, nil, utils_error.Err(response.DB_READ_ERROR)

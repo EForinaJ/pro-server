@@ -22,6 +22,7 @@ type IOrder interface {
 	Paid(ctx context.Context, id int64) (err error)
 	AddDiscount(ctx context.Context, req *dto_order.AddDiscount) (err error)
 	Cancel(ctx context.Context, id int64) (err error)
+	ChangeWitkey(ctx context.Context, req *dto_order.ChangeWitkey) (err error)
 
 	CheckCanCreate(ctx context.Context) (res bool, err error)
 	CheckPaid(ctx context.Context, id int64) (err error)
@@ -29,6 +30,7 @@ type IOrder interface {
 	CheckDiscount(ctx context.Context, req *dto_order.AddDiscount) (err error)
 	CheckRefund(ctx context.Context, req *dto_order.Refund) (err error)
 	CheckDistribute(ctx context.Context, req *dto_order.Distribute) (err error)
+	CheckChangeWitkey(ctx context.Context, req *dto_order.ChangeWitkey) (err error)
 }
 
 // 定义接口变量

@@ -19,6 +19,7 @@ type WitkeyList struct {
 	Name       string      `json:"name" dc:"威客名称"`
 	Game       string      `json:"game" dc:"游戏领域"`
 	Title      string      `json:"title" dc:"头衔勋章"`
-	Status     int         `json:"status" dc:"订单状态"`
+	IsReplaced int         `json:"isReplaced" dc:"是否换下"` //
+	Reason     string      `json:"reason" dc:"变更原因"`
 	CreateTime *gtime.Time `json:"createTime" dc:"下单时间"`
 }

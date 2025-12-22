@@ -30,6 +30,8 @@ func (s *sOrder) Distribute(ctx context.Context, req *dto_order.Distribute) (err
 	var entity do.SysOrderWitkey
 	entity.WitkeyId = req.WitkeyId
 	entity.OrderId = req.Id
+	entity.IsReplaced = consts.Not
+	entity.CreateTime = gtime.Now()
 	_, err = tx.Model(dao.SysOrderWitkey.Table()).
 		Data(&entity).
 		Insert()
@@ -37,15 +39,6 @@ func (s *sOrder) Distribute(ctx context.Context, req *dto_order.Distribute) (err
 		return utils_error.Err(response.DB_SAVE_ERROR)
 	}
 
-	//  添加接单日志
-	_, err = tx.Model(dao.SysOrderWitkeyAcceptLog.Table()).Data(g.Map{
-		dao.SysOrderWitkeyAcceptLog.Columns().OrderId:    req.Id,
-		dao.SysOrderWitkeyAcceptLog.Columns().CreateTime: gtime.Now(),
-		dao.SysOrderWitkeyAcceptLog.Columns().WitkeyId:   req.WitkeyId,
-	}).Insert()
-	if err != nil {
-		return utils_error.Err(response.DB_READ_ERROR)
-	}
 	witkeyUser, err := tx.Model(dao.SysWitkey.Table()).
 		WherePri(req.WitkeyId).Value(dao.SysWitkey.Columns().UserId)
 	if err != nil {

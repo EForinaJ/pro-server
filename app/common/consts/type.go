@@ -13,12 +13,12 @@ const (
 )
 
 const (
-	OrderLogTypeDistribute  = 1 // 添加项目打手
-	OrderLogTypeRefund      = 2 // 手动退款
-	OrderLogTypePayment     = 3 // 确认支付
-	OrderLogTypeAddDiscount = 4 // 添加优惠
-	OrderLogTypeAfterasles  = 5 // 退款售后
-	OrderLogTypeCancel      = 6 // 关闭订单
+	OrderLogTypeDistribute   = 1 // 添加项目打手
+	OrderLogTypeRefund       = 2 // 手动退款
+	OrderLogTypePayment      = 3 // 确认支付
+	OrderLogTypeAddDiscount  = 4 // 添加优惠
+	OrderLogTypeChangeWitkey = 5 // 变更威客
+	OrderLogTypeCancel       = 6 // 关闭订单
 )
 
 const (
