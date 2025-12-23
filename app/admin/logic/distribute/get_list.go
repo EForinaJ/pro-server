@@ -68,7 +68,7 @@ func (s *sDistribute) GetList(ctx context.Context, req *dto_distribute.Query) (t
 
 		//  威客
 		witkey, err := dao.SysWitkey.Ctx(ctx).
-			Where(dao.SysWitkey.Columns().Id, v.OrderId).
+			Where(dao.SysWitkey.Columns().Id, v.WitkeyId).
 			Fields(dao.SysWitkey.Columns().UserId, dao.SysWitkey.Columns().TitleId, dao.SysWitkey.Columns().GameId).
 			One()
 		if err != nil {

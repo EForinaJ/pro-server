@@ -8,7 +8,6 @@ import (
 
 // 定义显示接口
 type IOrder interface {
-	GetLogs(ctx context.Context, req *dto_order.Log) (total int, res []*dao_order.Log, err error)
 	GetList(ctx context.Context, req *dto_order.Query) (total int, res []*dao_order.List, err error)
 	GetDetail(ctx context.Context, id int64) (res *dao_order.Detail, err error)
 
@@ -16,7 +15,6 @@ type IOrder interface {
 	Create(ctx context.Context, req *dto_order.Create) (err error)
 	Refund(ctx context.Context, req *dto_order.Refund) (err error)
 	Delete(ctx context.Context, ids []int64) (err error)
-
 	Paid(ctx context.Context, id int64) (err error)
 	AddDiscount(ctx context.Context, req *dto_order.AddDiscount) (err error)
 	Cancel(ctx context.Context, id int64) (err error)

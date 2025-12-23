@@ -23,13 +23,6 @@ func (s *sOrder) Delete(ctx context.Context, ids []int64) (err error) {
 		}
 	}()
 
-	_, err = tx.Model(dao.SysOrderLog.Table()).
-		WhereIn(dao.SysOrderLog.Columns().OrderId, ids).
-		Delete()
-	if err != nil {
-		return utils_error.Err(response.DB_SAVE_ERROR)
-	}
-
 	_, err = tx.Model(dao.SysOrder.Table()).
 		WhereIn(dao.SysOrder.Columns().Id, ids).
 		Delete()

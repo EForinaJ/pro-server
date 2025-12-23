@@ -36,15 +36,6 @@ type AddDiscountReq struct {
 }
 type AddDiscountRes struct{}
 
-type GetLogsReq struct {
-	g.Meta `path:"/order/logs" method:"get" tags:"订单" summary:"订单操作日志"`
-	*dto_order.Log
-}
-type GetLogsRes struct {
-	Total int              `json:"total" dc:"总数"`
-	List  []*dao_order.Log `json:"list" dc:"订单操作日志列表"`
-}
-
 type DeleteReq struct {
 	g.Meta `path:"/order/delete" method:"post" tags:"订单" summary:"删除订单"`
 	Ids    []int64 `json:"ids" v:"required|array#ids不能为空|删除列表是一个数组"`

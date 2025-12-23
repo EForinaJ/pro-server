@@ -12,9 +12,9 @@ type IDistribute interface {
 	// GetEdit(ctx context.Context, id int64) (res *dao_distribute.Edit, err error)
 
 	Create(ctx context.Context, req *dto_distribute.Create) (err error)
-	// Edit(ctx context.Context, req *dto_distribute.Edit) (err error)
+	Cancel(ctx context.Context, req *dto_distribute.Cancel) (err error)
 	// Delete(ctx context.Context, ids []int64) (err error)
-
+	CheckCancel(ctx context.Context, req *dto_distribute.Cancel) (err error)
 	CheckCreate(ctx context.Context, req *dto_distribute.Create) (err error)
 	// CheckEdit(ctx context.Context, req *dto_distribute.Edit) (err error)
 }

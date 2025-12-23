@@ -78,12 +78,3 @@ type DeleteReq struct {
 	Ids    []int64 `json:"ids" v:"required|array#ids不能为空|删除列表是一个数组"`
 }
 type DeleteRes struct{}
-
-type GetLogsReq struct {
-	g.Meta `path:"/user/logs" method:"get" tags:"派单" summary:"派单操作日志"`
-	*dto_user.Log
-}
-type GetLogsRes struct {
-	Total int             `json:"total" dc:"总数"`
-	List  []*dao_user.Log `json:"list" dc:"派单操作日志列表"`
-}

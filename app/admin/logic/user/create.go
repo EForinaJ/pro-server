@@ -81,25 +81,7 @@ func (s *sUser) Create(ctx context.Context, req *dto_user.Create) (err error) {
 	}
 	entity.Experience = exp.Int()
 
-	rs, err := tx.Model(dao.SysUser.Table()).Data(&entity).Insert()
-	if err != nil {
-		return utils_error.Err(response.DB_SAVE_ERROR)
-	}
-
-	rid, err := rs.LastInsertId()
-	if err != nil {
-		return utils_error.Err(response.DB_SAVE_ERROR)
-	}
-
-	//  添加日志
-	userId := ctx.Value("userId")
-	_, err = tx.Model(dao.SysUserLog.Table()).Data(g.Map{
-		dao.SysUserLog.Columns().UserId:     rid,
-		dao.SysUserLog.Columns().CreateTime: gtime.Now(),
-		dao.SysUserLog.Columns().ManageId:   userId,
-		dao.SysUserLog.Columns().Mode:       consts.UserLogTypeCreate,
-		dao.SysUserLog.Columns().Content:    "创建用户",
-	}).Insert()
+	_, err = tx.Model(dao.SysUser.Table()).Data(&entity).Insert()
 	if err != nil {
 		return utils_error.Err(response.DB_SAVE_ERROR)
 	}

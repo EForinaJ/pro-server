@@ -81,18 +81,5 @@ func (s *sUser) Edit(ctx context.Context, req *dto_user.Edit) (err error) {
 		return utils_error.Err(response.DB_SAVE_ERROR)
 	}
 
-	//  添加日志
-	userId := ctx.Value("userId")
-	_, err = tx.Model(dao.SysUserLog.Table()).Data(g.Map{
-		dao.SysUserLog.Columns().UserId:     req.Id,
-		dao.SysUserLog.Columns().CreateTime: gtime.Now(),
-		dao.SysUserLog.Columns().ManageId:   userId,
-		dao.SysUserLog.Columns().Mode:       consts.UserLogTypeEdit,
-		dao.SysUserLog.Columns().Content:    "修改用户内容",
-	}).Insert()
-	if err != nil {
-		return utils_error.Err(response.DB_SAVE_ERROR)
-	}
-
 	return
 }

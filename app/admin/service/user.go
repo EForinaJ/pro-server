@@ -21,7 +21,6 @@ type IUser interface {
 	Create(ctx context.Context, req *dto_user.Create) (err error)
 	Recharge(ctx context.Context, req *dto_user.Recharge) (err error)
 
-	GetLogs(ctx context.Context, req *dto_user.Log) (total int, res []*dao_user.Log, err error)
 	GetBalanceList(ctx context.Context, req *dto_user.BalanceQuery) (total int, res []*dao_user.BalanceList, err error)
 	GetRechargeList(ctx context.Context, req *dto_user.RechargeQuery) (total int, res []*dao_user.RechargeList, err error)
 

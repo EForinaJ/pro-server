@@ -21,5 +21,4 @@ type IUserV1 interface {
 	GetRechargeList(ctx context.Context, req *v1.GetRechargeListReq) (res *v1.GetRechargeListRes, err error)
 	GetBalanceList(ctx context.Context, req *v1.GetBalanceListReq) (res *v1.GetBalanceListRes, err error)
 	Delete(ctx context.Context, req *v1.DeleteReq) (res *v1.DeleteRes, err error)
-	GetLogs(ctx context.Context, req *v1.GetLogsReq) (res *v1.GetLogsRes, err error)
 }

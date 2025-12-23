@@ -1,38 +1,8 @@
 package consts
 
 const (
-	CredentialTypeIdCrad   = 1 //身份证
-	CredentialTypePassport = 2 //护照
-)
-
-const (
-	WitkeyLogTypeCommission    = 3 // 平台变更佣金
-	WitkeyLogTypePunish        = 4 // 处罚用户
-	WitkeyLogTypePunishRevoke  = 5 // 处罚撤回
-	WitkeyLogTypeMarginDeposit = 6 // 平台变更保证金
-)
-
-const (
-	OrderLogTypePayment     = 1 // 确认支付
-	OrderLogTypeAddDiscount = 2 // 添加优惠
-	OrderLogTypeRefund      = 3 // 手动退款
-	OrderLogTypeCancel      = 4 // 关闭订单
-)
-
-const (
 	PaymentOrder   = 1 // 订单支付
 	UserIncomeGift = 2 // 礼物收入
-)
-
-const (
-	UserLogTypeDeleteWitkey   = 8 // 删除威客信息
-	UserLogTypeEditWitkey     = 7 // 修改威客信息
-	UserLogTypeAddWitkey      = 6 // 添加威客信息
-	UserLogTypeRechargeRevoke = 5 // 撤回预存
-	UserLogTypeBalance        = 4 // 修改用户余额
-	UserLogTypeRecharge       = 3 // 充值预存
-	UserLogTypeEdit           = 2 // 修改
-	UserLogTypeCreate         = 1 // 创建
 )
 
 const (

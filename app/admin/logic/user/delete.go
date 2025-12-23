@@ -23,20 +23,6 @@ func (s *sUser) Delete(ctx context.Context, ids []int64) (err error) {
 		}
 	}()
 
-	orderIds, err := tx.Model(dao.SysOrder.Table()).
-		Fields(dao.SysOrder.Columns().Id).
-		WhereIn(dao.SysOrder.Columns().UserId, ids).Array()
-	if err != nil {
-		return utils_error.Err(response.DB_SAVE_ERROR)
-	}
-
-	_, err = tx.Model(dao.SysOrderLog.Table()).
-		WhereIn(dao.SysOrderLog.Columns().OrderId, orderIds).
-		Delete()
-	if err != nil {
-		return utils_error.Err(response.DB_SAVE_ERROR)
-	}
-
 	_, err = tx.Model(dao.SysOrder.Table()).
 		WhereIn(dao.SysOrder.Columns().UserId, ids).
 		Delete()
@@ -46,13 +32,6 @@ func (s *sUser) Delete(ctx context.Context, ids []int64) (err error) {
 
 	_, err = tx.Model(dao.SysRecharge.Table()).
 		WhereIn(dao.SysRecharge.Columns().UserId, ids).
-		Delete()
-	if err != nil {
-		return utils_error.Err(response.DB_SAVE_ERROR)
-	}
-
-	_, err = tx.Model(dao.SysUserLog.Table()).
-		WhereIn(dao.SysUserLog.Columns().UserId, ids).
 		Delete()
 	if err != nil {
 		return utils_error.Err(response.DB_SAVE_ERROR)
