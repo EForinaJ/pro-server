@@ -18,6 +18,7 @@ import (
 	_ "server/app/admin/logic/product"
 	_ "server/app/admin/logic/recharge"
 	_ "server/app/admin/logic/role"
+	_ "server/app/admin/logic/settlement"
 	_ "server/app/admin/logic/site"
 	_ "server/app/admin/logic/system"
 	_ "server/app/admin/logic/title"

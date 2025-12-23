@@ -5,6 +5,7 @@ import (
 	"server/app/admin/controller/category"
 	"server/app/admin/controller/distribute"
 	"server/app/admin/controller/level"
+	"server/app/admin/controller/settlement"
 	"server/app/admin/controller/witkey"
 
 	"server/app/admin/controller/auth"
@@ -66,6 +67,7 @@ func LoadRouter(s *ghttp.Server) {
 			product.NewV1(),
 			order.NewV1(),
 			distribute.NewV1(),
+			settlement.NewV1(),
 			recharge.NewV1(),
 
 			bill.NewV1(),
