@@ -38,7 +38,7 @@ func (s *sWitkey) ChangeCommission(ctx context.Context, req *dto_witkey.Commissi
 		dao.SysCommission.Columns().Mode:       req.Mode,
 		dao.SysCommission.Columns().WitkeyId:   req.Id,
 		dao.SysCommission.Columns().CreateTime: gtime.Now(),
-		dao.SysCommission.Columns().Type:       consts.UserChangeCommissionTypeSystem,
+		dao.SysCommission.Columns().Type:       consts.WitkeyChangeCommissionTypeSystem,
 	}
 
 	switch req.Mode {

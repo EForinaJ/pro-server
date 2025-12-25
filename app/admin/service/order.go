@@ -12,14 +12,16 @@ type IOrder interface {
 	GetDetail(ctx context.Context, id int64) (res *dao_order.Detail, err error)
 
 	// 创建订单
-	Create(ctx context.Context, req *dto_order.Create) (err error)
 	Refund(ctx context.Context, req *dto_order.Refund) (err error)
 	Delete(ctx context.Context, ids []int64) (err error)
 	Paid(ctx context.Context, id int64) (err error)
 	AddDiscount(ctx context.Context, req *dto_order.AddDiscount) (err error)
 	Cancel(ctx context.Context, id int64) (err error)
+	StartService(ctx context.Context, id int64) (err error)
+	Complete(ctx context.Context, id int64) (err error)
 
-	CheckCanCreate(ctx context.Context) (res bool, err error)
+	CheckComplete(ctx context.Context, id int64) (err error)
+	CheckStartService(ctx context.Context, id int64) (err error)
 	CheckPaid(ctx context.Context, id int64) (err error)
 	CheckCancel(ctx context.Context, id int64) (err error)
 	CheckDiscount(ctx context.Context, req *dto_order.AddDiscount) (err error)

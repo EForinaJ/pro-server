@@ -18,4 +18,6 @@ type IOrderV1 interface {
 	Delete(ctx context.Context, req *v1.DeleteReq) (res *v1.DeleteRes, err error)
 	Paid(ctx context.Context, req *v1.PaidReq) (res *v1.PaidRes, err error)
 	Cancel(ctx context.Context, req *v1.CancelReq) (res *v1.CancelRes, err error)
+	StartService(ctx context.Context, req *v1.StartServiceReq) (res *v1.StartServiceRes, err error)
+	Complete(ctx context.Context, req *v1.CompleteReq) (res *v1.CompleteRes, err error)
 }

@@ -17,6 +17,7 @@ type SysDistribute struct {
 	WitkeyId   interface{} //
 	ManageId   interface{} //
 	IsCancel   interface{} //
+	Images     interface{} //
 	Reason     interface{} //
 	CreateTime *gtime.Time //
 }

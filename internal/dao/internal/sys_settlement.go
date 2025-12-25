@@ -21,16 +21,15 @@ type SysSettlementDao struct {
 // SysSettlementColumns defines and stores column names for the table sys_settlement.
 type SysSettlementColumns struct {
 	Id             string //
+	Code           string //
 	OrderId        string //
 	WitkeyId       string //
 	ManageId       string //
-	Type           string //
 	Amount         string //
 	Commission     string //
-	Deduction      string //
 	ServiceCharge  string //
 	Status         string //
-	Remark         string //
+	Reason         string //
 	SettlementTime string //
 	CreateTime     string //
 	UpdateTime     string //
@@ -39,16 +38,15 @@ type SysSettlementColumns struct {
 // sysSettlementColumns holds the columns for the table sys_settlement.
 var sysSettlementColumns = SysSettlementColumns{
 	Id:             "id",
+	Code:           "code",
 	OrderId:        "order_id",
 	WitkeyId:       "witkey_id",
 	ManageId:       "manage_id",
-	Type:           "type",
 	Amount:         "amount",
 	Commission:     "commission",
-	Deduction:      "deduction",
 	ServiceCharge:  "service_charge",
 	Status:         "status",
-	Remark:         "remark",
+	Reason:         "reason",
 	SettlementTime: "settlement_time",
 	CreateTime:     "create_time",
 	UpdateTime:     "update_time",

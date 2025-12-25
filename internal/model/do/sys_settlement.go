@@ -13,16 +13,15 @@ import (
 type SysSettlement struct {
 	g.Meta         `orm:"table:sys_settlement, do:true"`
 	Id             interface{} //
+	Code           interface{} //
 	OrderId        interface{} //
 	WitkeyId       interface{} //
 	ManageId       interface{} //
-	Type           interface{} //
 	Amount         interface{} //
 	Commission     interface{} //
-	Deduction      interface{} //
 	ServiceCharge  interface{} //
 	Status         interface{} //
-	Remark         interface{} //
+	Reason         interface{} //
 	SettlementTime *gtime.Time //
 	CreateTime     *gtime.Time //
 	UpdateTime     *gtime.Time //

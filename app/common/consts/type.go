@@ -8,36 +8,18 @@ const (
 const (
 	UserChangeBalanceTypeSystem   = 1 // 系统变更余额
 	UserChangeBalanceTypeRecharge = 2 // 用户充值
-	// UserFundLogTypeOrderRefund         = 3  // 订单退款
-	// UserFundLogTypeOrderPayMent        = 4  // 订单收款
-	// UserFundLogTypeRevokeRecharge      = 5  // 撤回预存
-	// UserFundLogTypeWithdraw            = 6  // 提现扣除佣金
-	// UserFundLogTypeSettlement          = 7  // 项目结算添加佣金
-	// UserFundLogTypeChangeCommission    = 8  // 平台变更佣金
-	// UserFundLogTypePunish              = 9  // 处罚扣款佣金
-	// UserFundLogTypeRevokePunish        = 10 // 撤回处罚佣金
-	// UserFundLogTypeChangeMarginDeposit = 11 // 平台变更保证金
 )
 
 const (
-	UserChangeCommissionTypeSystem = 1 // 系统变更佣金
-	// UserChangeBalanceTypeRecharge = 2 // 用户充值
-	// UserFundLogTypeOrderRefund         = 3  // 订单退款
-	// UserFundLogTypeOrderPayMent        = 4  // 订单收款
-	// UserFundLogTypeRevokeRecharge      = 5  // 撤回预存
-	// UserFundLogTypeWithdraw            = 6  // 提现扣除佣金
-	// UserFundLogTypeSettlement          = 7  // 项目结算添加佣金
-	// UserFundLogTypeChangeCommission    = 8  // 平台变更佣金
-	// UserFundLogTypePunish              = 9  // 处罚扣款佣金
-	// UserFundLogTypeRevokePunish        = 10 // 撤回处罚佣金
-	// UserFundLogTypeChangeMarginDeposit = 11 // 平台变更保证金
+	WitkeyChangeCommissionTypeSystem     = 1 // 系统变更佣金
+	WitkeyChangeCommissionTypeSettlement = 2 // 结算变更佣金
 )
 
 const (
-	BillTypeRecharge = 1 // 账户充值
-	BillTypeRefund   = 2 // 商品退款
-	BillTypeOrder    = 3 // 购买商品
-	// BillTypeSettlementCommission = 4 // 结算佣金
+	BillTypeRecharge             = 1 // 账户充值
+	BillTypeRefund               = 2 // 商品退款
+	BillTypeOrder                = 3 // 购买商品
+	BillTypeSettlementCommission = 3 // 佣金结算
 )
 
 const (

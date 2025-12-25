@@ -53,3 +53,15 @@ type CancelReq struct {
 	Id     int64 `p:"id" v:"required|integer|min:1#请输入id|id类型必须是整型|id最小为1" dc:"id"`
 }
 type CancelRes struct{}
+
+type StartServiceReq struct {
+	g.Meta `path:"/order/start" method:"post" tags:"订单" summary:"开始服务"`
+	Id     int64 `p:"id" v:"required|integer|min:1#请输入id|id类型必须是整型|id最小为1" dc:"id"`
+}
+type StartServiceRes struct{}
+
+type CompleteReq struct {
+	g.Meta `path:"/order/complete" method:"post" tags:"订单" summary:"完成服务"`
+	Id     int64 `p:"id" v:"required|integer|min:1#请输入id|id类型必须是整型|id最小为1" dc:"id"`
+}
+type CompleteRes struct{}

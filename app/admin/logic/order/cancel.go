@@ -12,19 +12,8 @@ import (
 
 // Cancel implements service.IOrder.
 func (s *sOrder) Cancel(ctx context.Context, id int64) (err error) {
-	tx, err := g.DB().Begin(ctx)
-	if err != nil {
-		return utils_error.Err(response.DB_SAVE_ERROR)
-	}
-	defer func() {
-		if err != nil {
-			tx.Rollback()
-		} else {
-			tx.Commit()
-		}
-	}()
 
-	_, err = tx.Model(dao.SysOrder.Table()).
+	_, err = dao.SysOrder.Ctx(ctx).
 		Where(dao.SysOrder.Columns().Id, id).
 		Data(g.Map{
 			dao.SysOrder.Columns().Status: consts.OrderStatusCancel,

@@ -23,3 +23,9 @@ type GetDetailReq struct {
 type GetDetailRes struct {
 	*dao_settlement.Detail
 }
+
+type ApplyReq struct {
+	g.Meta `path:"/settlement/apply" method:"post" tags:"结算" summary:"审核结算"`
+	*dto_settlement.Apply
+}
+type ApplyRes struct{}

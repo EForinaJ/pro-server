@@ -24,6 +24,7 @@ type SysOrderColumns struct {
 	Code           string //
 	UserId         string //
 	ProductId      string //
+	ManageId       string //
 	Specifications string //
 	WitkeyCount    string //
 	Quantity       string //
@@ -42,7 +43,6 @@ type SysOrderColumns struct {
 	FinishTime     string //
 	CreateTime     string //
 	UpdateTime     string //
-	DeleteTime     string //
 	Remark         string //
 }
 
@@ -52,6 +52,7 @@ var sysOrderColumns = SysOrderColumns{
 	Code:           "code",
 	UserId:         "user_id",
 	ProductId:      "product_id",
+	ManageId:       "manage_id",
 	Specifications: "specifications",
 	WitkeyCount:    "witkey_count",
 	Quantity:       "quantity",
@@ -70,7 +71,6 @@ var sysOrderColumns = SysOrderColumns{
 	FinishTime:     "finish_time",
 	CreateTime:     "create_time",
 	UpdateTime:     "update_time",
-	DeleteTime:     "delete_time",
 	Remark:         "remark",
 }
 

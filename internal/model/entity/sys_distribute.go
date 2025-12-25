@@ -15,6 +15,7 @@ type SysDistribute struct {
 	WitkeyId   int64       `json:"witkeyId"   orm:"witkey_id"   description:""` //
 	ManageId   int64       `json:"manageId"   orm:"manage_id"   description:""` //
 	IsCancel   int         `json:"isCancel"   orm:"is_cancel"   description:""` //
+	Images     string      `json:"images"     orm:"images"      description:""` //
 	Reason     string      `json:"reason"     orm:"reason"      description:""` //
 	CreateTime *gtime.Time `json:"createTime" orm:"create_time" description:""` //
 }

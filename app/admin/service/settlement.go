@@ -10,6 +10,8 @@ import (
 type ISettlement interface {
 	GetList(ctx context.Context, req *dto_settlement.Query) (total int, res []*dao_settlement.List, err error)
 	GetDetail(ctx context.Context, id int64) (res *dao_settlement.Detail, err error)
+	Apply(ctx context.Context, req *dto_settlement.Apply) (err error)
+	CheckApply(ctx context.Context, req *dto_settlement.Apply) (err error)
 }
 
 // 定义接口变量

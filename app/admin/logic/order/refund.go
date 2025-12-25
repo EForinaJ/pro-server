@@ -44,6 +44,20 @@ func (s *sOrder) Refund(ctx context.Context, req *dto_order.Refund) (err error) 
 		return utils_error.Err(response.DB_SAVE_ERROR)
 	}
 
+	_, err = tx.Model(dao.SysAftersales.Table()).
+		Data(g.Map{
+			dao.SysAftersales.Columns().OrderId:  req.Id,
+			dao.SysAftersales.Columns().Code:     utils_snow.GetCode(ctx, consts.AS),
+			dao.SysAftersales.Columns().Amount:   req.Money,
+			dao.SysAftersales.Columns().Type:     req.Type,
+			dao.SysAftersales.Columns().ManageId: ctx.Value("userId"),
+			dao.SysAftersales.Columns().Reason:   req.Reason,
+			dao.SysAftersales.Columns().Status:   consts.StatusSuccess,
+			dao.SysUserBill.Columns().CreateTime: gtime.Now(),
+		}).Insert()
+	if err != nil {
+		return utils_error.Err(response.DB_SAVE_ERROR)
+	}
 	_, err = tx.Model(dao.SysRefund.Table()).
 		Data(g.Map{
 			dao.SysRefund.Columns().OrderId:      req.Id,

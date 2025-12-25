@@ -16,6 +16,7 @@ type SysOrder struct {
 	Code           interface{} //
 	UserId         interface{} //
 	ProductId      interface{} //
+	ManageId       interface{} //
 	Specifications interface{} //
 	WitkeyCount    interface{} //
 	Quantity       interface{} //
@@ -34,6 +35,5 @@ type SysOrder struct {
 	FinishTime     *gtime.Time //
 	CreateTime     *gtime.Time //
 	UpdateTime     *gtime.Time //
-	DeleteTime     *gtime.Time //
 	Remark         interface{} //
 }
