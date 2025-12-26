@@ -3,6 +3,7 @@ package settlement
 import (
 	"context"
 	dao_settlement "server/app/admin/dao/settlement"
+	"server/app/admin/service"
 	utils_error "server/app/common/utils/error"
 	"server/app/common/utils/response"
 	"server/internal/dao"
@@ -27,14 +28,12 @@ func (s *sSettlement) GetDetail(ctx context.Context, id int64) (res *dao_settlem
 		return nil, utils_error.Err(response.FAILD)
 	}
 
-	//  订单编号
-	orderCode, err := dao.SysOrder.Ctx(ctx).
-		Where(dao.SysOrder.Columns().Id, obj.GMap().Get(dao.SysSettlement.Columns().OrderId)).
-		Value(dao.SysOrder.Columns().Code)
+	//  订单
+	order, err := service.Order().GetDetail(ctx, gconv.Int64(obj.GMap().Get(dao.SysSettlement.Columns().OrderId)))
 	if err != nil {
 		return nil, utils_error.Err(response.DB_READ_ERROR)
 	}
-	detail.Code = orderCode.String()
+	detail.Order = order
 
 	//  威客
 	witkey, err := dao.SysWitkey.Ctx(ctx).

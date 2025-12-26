@@ -8,6 +8,7 @@ import (
 	"server/app/admin/controller/settlement"
 	"server/app/admin/controller/witkey"
 
+	"server/app/admin/controller/aftersales"
 	"server/app/admin/controller/auth"
 	"server/app/admin/controller/bill"
 	"server/app/admin/controller/game"
@@ -68,6 +69,7 @@ func LoadRouter(s *ghttp.Server) {
 			order.NewV1(),
 			distribute.NewV1(),
 			settlement.NewV1(),
+			aftersales.NewV1(),
 			recharge.NewV1(),
 
 			bill.NewV1(),

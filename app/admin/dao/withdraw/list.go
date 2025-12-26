@@ -3,12 +3,13 @@ package dao_withdraw
 import "github.com/gogf/gf/v2/os/gtime"
 
 type List struct {
-	Id         int64       `json:"id" dc:"ID"`
-	Code       string      `json:"code" dc:"UID"`
-	Manage     string      `json:"manage" dc:"管理昵称"`
-	Witkey     string      `json:"witkey" dc:"威客昵称"`
-	Money      float64     `json:"money" dc:"提现金额"`
-	Remark     string      `json:"remark" dc:"备注"`
-	Status     int         `json:"status" dc:"状态"`
-	CreateTime *gtime.Time `json:"createTime" dc:"创建时间"`
+	Id            int64       `json:"id" dc:"ID"`
+	Code          string      `json:"code" dc:"提现编号"`
+	Witkey        string      `json:"witkey" dc:"申请威客"`
+	Amount        float64     `json:"amount" dc:"提现金额"`
+	SettledAmount float64     `json:"settledAmount" dc:"到账金额"`
+	ServiceFee    float64     `json:"serviceFee" dc:"平台手续费"`
+	Status        int         `json:"status" dc:"状态"`
+	Type          int         `json:"type" dc:"到账类型"`
+	CreateTime    *gtime.Time `json:"createTime" dc:"创建时间"`
 }

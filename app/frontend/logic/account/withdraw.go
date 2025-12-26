@@ -62,8 +62,8 @@ func (s *sAccount) Withdraw(ctx context.Context, req *dto_account.Withdraw) (err
 		dao.SysWithdraw.Columns().Type:          card.GMap().Get(dao.SysUserCard.Columns().Type),
 		dao.SysWithdraw.Columns().SettledAmount: settledAmount,
 		dao.SysWithdraw.Columns().ServiceFee:    serviceFee,
-		dao.SysWithdraw.Columns().Money:         req.Money,
-		dao.SysWithdraw.Columns().UserId:        ctx.Value("userId"),
+		dao.SysWithdraw.Columns().Amount:        req.Money,
+		dao.SysWithdraw.Columns().WitkeyId:      ctx.Value("userId"),
 		dao.SysWithdraw.Columns().Status:        consts.WithdrawStatusApply,
 		dao.SysWithdraw.Columns().CreateTime:    gtime.Now(),
 	}).Insert()

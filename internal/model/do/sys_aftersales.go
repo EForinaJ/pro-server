@@ -14,6 +14,7 @@ type SysAftersales struct {
 	g.Meta     `orm:"table:sys_aftersales, do:true"`
 	Id         interface{} //
 	Code       interface{} //
+	UserId     interface{} //
 	ManageId   interface{} //
 	OrderId    interface{} //
 	Type       interface{} //

@@ -2,6 +2,7 @@ package logic
 
 import (
 	_ "server/app/admin/logic/account"
+	_ "server/app/admin/logic/aftersales"
 	_ "server/app/admin/logic/auth"
 	_ "server/app/admin/logic/bill"
 	_ "server/app/admin/logic/category"

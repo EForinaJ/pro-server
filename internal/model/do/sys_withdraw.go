@@ -15,17 +15,15 @@ type SysWithdraw struct {
 	Id            interface{} //
 	Code          interface{} //
 	ManageId      interface{} //
-	UserId        interface{} //
-	Money         interface{} //
+	WitkeyId      interface{} //
+	Amount        interface{} //
 	SettledAmount interface{} //
 	ServiceFee    interface{} //
-	ReceiptFiles  interface{} //
-	ReceiptNum    interface{} //
 	Type          interface{} //
 	Number        interface{} //
 	Name          interface{} //
 	Status        interface{} //
-	Remark        interface{} //
+	Reason        interface{} //
 	CreateTime    *gtime.Time //
 	UpdateTime    *gtime.Time //
 }

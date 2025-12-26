@@ -15,7 +15,7 @@ import (
 // GetWithdrawList implements service.IAccount.
 func (s *sAccount) GetWithdrawList(ctx context.Context, req *dto_account.WithdrawQuery) (total int, res []*dao_account.WithdrawList, err error) {
 	m := dao.SysWithdraw.Ctx(ctx).
-		Where(dao.SysWithdraw.Columns().UserId, ctx.Value("userId")).
+		Where(dao.SysWithdraw.Columns().WitkeyId, ctx.Value("userId")).
 		OrderDesc(dao.SysWithdraw.Columns().CreateTime)
 
 	total, err = m.Count()

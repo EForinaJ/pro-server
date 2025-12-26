@@ -27,13 +27,6 @@ func (s *sWithdraw) GetInfo(ctx context.Context, id int64) (res *dao_withdraw.De
 		return nil, utils_error.Err(response.DB_READ_ERROR)
 	}
 
-	receiptFiles := info.GMap().Get(dao.SysWithdraw.Columns().ReceiptFiles)
-	if receiptFiles != nil {
-		entity.ReceiptFiles = gconv.Strings(receiptFiles)
-	} else {
-		entity.ReceiptFiles = []string{}
-	}
-
 	// witkey, err := dao.SysWitkey.Ctx(ctx).
 	// 	Where(dao.SysWitkey.Columns().Id, info.GMap().Get(dao.SysWithdraw.Columns().WitkeyId)).
 	// 	Value(dao.SysWitkey.Columns().Name)

@@ -18,19 +18,22 @@ func (s *sWithdraw) GetList(ctx context.Context, req *dto_withdraw.Query) (total
 		Page(req.Page, req.Limit).
 		OrderDesc(dao.SysWithdraw.Columns().CreateTime)
 	if req.Code != "" {
-		m = m.WhereIn(dao.SysWithdraw.Columns().Code, req.Code)
+		m = m.Where(dao.SysWithdraw.Columns().Code, req.Code)
 	}
-	if req.WitkeyId != 0 {
-		m = m.WhereIn(dao.SysWithdraw.Columns().UserId, req.WitkeyId)
-	}
-
-	if req.Phone != "" {
-		// id, err := dao.SysUser.Ctx(ctx).
-		// 	Where(dao.SysUser.Columns().Phone, req.Phone).Value(dao.SysUser.Columns().Id)
-		// if err != nil {
-		// 	return 0, nil, utils_error.Err(response.DB_READ_ERROR)
-		// }
-		// m = m.Where(dao.SysWithdraw.Columns().UserId, id)
+	if req.Name != "" {
+		userId, err := dao.SysUser.Ctx(ctx).
+			Where(dao.SysUser.Columns().Name, req.Name).
+			Value(dao.SysUser.Columns().Id)
+		if err != nil {
+			return 0, nil, utils_error.Err(response.DB_READ_ERROR)
+		}
+		witkeyId, err := dao.SysWitkey.Ctx(ctx).
+			Where(dao.SysWitkey.Columns().UserId, userId).
+			Value(dao.SysWitkey.Columns().Id)
+		if err != nil {
+			return 0, nil, utils_error.Err(response.DB_READ_ERROR)
+		}
+		m = m.Where(dao.SysWithdraw.Columns().WitkeyId, witkeyId)
 	}
 	if req.Status != 0 {
 		m = m.Where(dao.SysWithdraw.Columns().Status, req.Status)
@@ -53,22 +56,19 @@ func (s *sWithdraw) GetList(ctx context.Context, req *dto_withdraw.Query) (total
 			return 0, nil, utils_error.Err(response.DB_READ_ERROR)
 		}
 
-		// user, err := dao.SysUser.Ctx(ctx).
-		// 	Where(dao.SysUser.Columns().Id, v.UserId).
-		// 	Value(dao.SysUser.Columns().Name)
-		// if err != nil {
-		// 	return 0, nil, utils_error.Err(response.DB_READ_ERROR)
-		// }
-		// entity.User = user.String()
-
-		//
-		manage, err := dao.SysManage.Ctx(ctx).
-			Where(dao.SysManage.Columns().Id, v.ManageId).
-			Value(dao.SysManage.Columns().Name)
+		userId, err := dao.SysWitkey.Ctx(ctx).
+			Where(dao.SysWitkey.Columns().Id, v.WitkeyId).
+			Value(dao.SysWitkey.Columns().UserId)
 		if err != nil {
 			return 0, nil, utils_error.Err(response.DB_READ_ERROR)
 		}
-		entity.Manage = gconv.String(manage)
+		user, err := dao.SysUser.Ctx(ctx).
+			Where(dao.SysUser.Columns().Id, userId).
+			Value(dao.SysUser.Columns().Name)
+		if err != nil {
+			return 0, nil, utils_error.Err(response.DB_READ_ERROR)
+		}
+		entity.Witkey = user.String()
 		res[i] = entity
 	}
 

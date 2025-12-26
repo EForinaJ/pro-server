@@ -64,7 +64,7 @@ func (s *sSettlement) GetList(ctx context.Context, req *dto_settlement.Query) (t
 		if err != nil {
 			return 0, nil, utils_error.Err(response.DB_READ_ERROR)
 		}
-		entity.Code = orderCode.String()
+		entity.OrderCode = orderCode.String()
 
 		//  威客
 		witkey, err := dao.SysWitkey.Ctx(ctx).
@@ -82,15 +82,6 @@ func (s *sSettlement) GetList(ctx context.Context, req *dto_settlement.Query) (t
 			return 0, nil, utils_error.Err(response.DB_READ_ERROR)
 		}
 		entity.Witkey = user.String()
-
-		manage, err := dao.SysManage.Ctx(ctx).
-			Where(dao.SysManage.Columns().Id,
-				v.ManageId).
-			Value(dao.SysManage.Columns().Name)
-		if err != nil {
-			return 0, nil, utils_error.Err(response.DB_READ_ERROR)
-		}
-		entity.Manage = manage.String()
 
 		res[i] = entity
 	}

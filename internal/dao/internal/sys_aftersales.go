@@ -22,6 +22,7 @@ type SysAftersalesDao struct {
 type SysAftersalesColumns struct {
 	Id         string //
 	Code       string //
+	UserId     string //
 	ManageId   string //
 	OrderId    string //
 	Type       string //
@@ -35,6 +36,7 @@ type SysAftersalesColumns struct {
 var sysAftersalesColumns = SysAftersalesColumns{
 	Id:         "id",
 	Code:       "code",
+	UserId:     "user_id",
 	ManageId:   "manage_id",
 	OrderId:    "order_id",
 	Type:       "type",

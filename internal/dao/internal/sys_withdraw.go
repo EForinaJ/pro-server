@@ -23,17 +23,15 @@ type SysWithdrawColumns struct {
 	Id            string //
 	Code          string //
 	ManageId      string //
-	UserId        string //
-	Money         string //
+	WitkeyId      string //
+	Amount        string //
 	SettledAmount string //
 	ServiceFee    string //
-	ReceiptFiles  string //
-	ReceiptNum    string //
 	Type          string //
 	Number        string //
 	Name          string //
 	Status        string //
-	Remark        string //
+	Reason        string //
 	CreateTime    string //
 	UpdateTime    string //
 }
@@ -43,17 +41,15 @@ var sysWithdrawColumns = SysWithdrawColumns{
 	Id:            "id",
 	Code:          "code",
 	ManageId:      "manage_id",
-	UserId:        "user_id",
-	Money:         "money",
+	WitkeyId:      "witkey_id",
+	Amount:        "amount",
 	SettledAmount: "settled_amount",
 	ServiceFee:    "service_fee",
-	ReceiptFiles:  "receipt_files",
-	ReceiptNum:    "receipt_num",
 	Type:          "type",
 	Number:        "number",
 	Name:          "name",
 	Status:        "status",
-	Remark:        "remark",
+	Reason:        "reason",
 	CreateTime:    "create_time",
 	UpdateTime:    "update_time",
 }
