@@ -64,7 +64,7 @@ func (s *sAccount) Withdraw(ctx context.Context, req *dto_account.Withdraw) (err
 		dao.SysWithdraw.Columns().ServiceFee:    serviceFee,
 		dao.SysWithdraw.Columns().Amount:        req.Money,
 		dao.SysWithdraw.Columns().WitkeyId:      ctx.Value("userId"),
-		dao.SysWithdraw.Columns().Status:        consts.WithdrawStatusApply,
+		dao.SysWithdraw.Columns().Status:        consts.StatusApply,
 		dao.SysWithdraw.Columns().CreateTime:    gtime.Now(),
 	}).Insert()
 	if err != nil {

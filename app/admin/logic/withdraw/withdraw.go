@@ -19,7 +19,7 @@ func (s *sWithdraw) CheckStatusNotApply(ctx context.Context, id int64) (res bool
 	if err != nil {
 		return false, utils_error.Err(response.DB_READ_ERROR)
 	}
-	if gconv.Int(status) == consts.WithdrawStatusApply {
+	if gconv.Int(status) == consts.StatusApply {
 		return true, nil
 	}
 

@@ -9,17 +9,9 @@ import (
 // 定义显示接口
 type IWithdraw interface {
 	// 检查余额是否足够
-	CheckCommission(ctx context.Context, id int64) (res bool, err error)
-
-	// 检查是否未审核
-	CheckStatusNotApply(ctx context.Context, id int64) (res bool, err error)
-
-	GetInfo(ctx context.Context, id int64) (res *dao_withdraw.Detail, err error)
-
+	CheckApply(ctx context.Context, req *dto_withdraw.Apply) (err error)
+	GetDetail(ctx context.Context, id int64) (res *dao_withdraw.Detail, err error)
 	GetList(ctx context.Context, req *dto_withdraw.Query) (total int, res []*dao_withdraw.List, err error)
-
-	// Delete(ctx context.Context, ids []int64) (err error)
-
 	Apply(ctx context.Context, req *dto_withdraw.Apply) (err error)
 }
 

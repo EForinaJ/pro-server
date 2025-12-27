@@ -8,7 +8,7 @@ import (
 )
 
 func (c *ControllerV1) GetInfo(ctx context.Context, req *v1.GetInfoReq) (res *v1.GetInfoRes, err error) {
-	detail, err := service.Withdraw().GetInfo(ctx, req.Id)
+	detail, err := service.Withdraw().GetDetail(ctx, req.Id)
 	if err != nil {
 		return nil, err
 	}

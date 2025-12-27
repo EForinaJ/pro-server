@@ -16,15 +16,3 @@ const (
 	FundLogModeAdd = 1
 	FundLogModeSub = 2
 )
-
-const (
-	SettlementModeDeduction = 1 // 扣款
-	SettlementModeFull      = 2 // 全款
-)
-
-const (
-	JobLogModeEdit       = 1 // 修改派单
-	JobLogModeCancel     = 2 // 取消派单
-	JobLogModePublish    = 3 // 派发威客
-	JobLogModeSettlement = 4 // 结算派单
-)

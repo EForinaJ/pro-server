@@ -10,8 +10,8 @@ import (
 	"github.com/gogf/gf/v2/util/gconv"
 )
 
-// GetInfo implements service.IWithdraw.
-func (s *sWithdraw) GetInfo(ctx context.Context, id int64) (res *dao_withdraw.Detail, err error) {
+// GetDetail implements service.IWithdraw.
+func (s *sWithdraw) GetDetail(ctx context.Context, id int64) (res *dao_withdraw.Detail, err error) {
 	info, err := dao.SysWithdraw.Ctx(ctx).
 		Where(dao.SysWithdraw.Columns().Id, id).One()
 	if err != nil {
@@ -21,19 +21,24 @@ func (s *sWithdraw) GetInfo(ctx context.Context, id int64) (res *dao_withdraw.De
 		return nil, utils_error.Err(response.NOT_FOUND)
 	}
 
-	var entity *dao_withdraw.Detail
-	err = gconv.Scan(info, &entity)
+	var detail *dao_withdraw.Detail
+	err = gconv.Scan(info, &detail)
 	if err != nil {
 		return nil, utils_error.Err(response.DB_READ_ERROR)
 	}
-
-	// witkey, err := dao.SysWitkey.Ctx(ctx).
-	// 	Where(dao.SysWitkey.Columns().Id, info.GMap().Get(dao.SysWithdraw.Columns().WitkeyId)).
-	// 	Value(dao.SysWitkey.Columns().Name)
-	// if err != nil {
-	// 	return nil, utils_error.Err(response.DB_READ_ERROR)
-	// }
-	// entity.Witkey = witkey.String()
+	userId, err := dao.SysWitkey.Ctx(ctx).
+		Where(dao.SysWitkey.Columns().Id, info.GMap().Get(dao.SysWithdraw.Columns().WitkeyId)).
+		Value(dao.SysWitkey.Columns().UserId)
+	if err != nil {
+		return nil, utils_error.Err(response.DB_READ_ERROR)
+	}
+	user, err := dao.SysUser.Ctx(ctx).
+		Where(dao.SysUser.Columns().Id, userId).
+		Value(dao.SysUser.Columns().Name)
+	if err != nil {
+		return nil, utils_error.Err(response.DB_READ_ERROR)
+	}
+	detail.Witkey = user.String()
 
 	//
 	manage, err := dao.SysManage.Ctx(ctx).
@@ -42,7 +47,7 @@ func (s *sWithdraw) GetInfo(ctx context.Context, id int64) (res *dao_withdraw.De
 	if err != nil {
 		return nil, utils_error.Err(response.DB_READ_ERROR)
 	}
-	entity.Manage = gconv.String(manage)
+	detail.Manage = gconv.String(manage)
 
-	return entity, nil
+	return detail, nil
 }

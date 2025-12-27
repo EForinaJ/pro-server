@@ -17,12 +17,6 @@ const (
 )
 
 const (
-	WithdrawStatusApply  = 1 // 待审核
-	WithdrawStatuSuccess = 2 // 提现成功
-	WithdrawStatuFail    = 3 // 提现失败
-)
-
-const (
 	PayStatusPending = 1 // 未支付
 	PayStatusSuccess = 2 // 支付成功
 	PayStatusRefund  = 3 // 已退款
