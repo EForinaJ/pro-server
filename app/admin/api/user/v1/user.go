@@ -55,15 +55,6 @@ type RechargeReq struct {
 }
 type RechargeRes struct{}
 
-type GetRechargeListReq struct {
-	g.Meta `path:"/user/recharge/list" method:"get" tags:"用户" summary:"充值列表"`
-	*dto_user.RechargeQuery
-}
-type GetRechargeListRes struct {
-	Total int                      `json:"total" dc:"总数"`
-	List  []*dao_user.RechargeList `json:"list" dc:"充值列表"`
-}
-
 type GetBalanceListReq struct {
 	g.Meta `path:"/user/balance/list" method:"get" tags:"用户" summary:"余额日志"`
 	*dto_user.BalanceQuery

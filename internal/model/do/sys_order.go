@@ -28,6 +28,7 @@ type SysOrder struct {
 	PayAmount      interface{} //
 	Requirements   interface{} //
 	Status         interface{} //
+	PayCode        interface{} //
 	PayMode        interface{} //
 	PayStatus      interface{} //
 	PayTime        *gtime.Time //

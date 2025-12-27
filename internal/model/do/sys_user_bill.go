@@ -17,7 +17,7 @@ type SysUserBill struct {
 	RelatedId  interface{} //
 	Code       interface{} //
 	Type       interface{} //
-	Money      interface{} //
+	Amount     interface{} //
 	Mode       interface{} //
 	CreateTime *gtime.Time //
 }

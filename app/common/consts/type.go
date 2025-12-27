@@ -1,8 +1,10 @@
 package consts
 
 const (
-	PaymentOrder   = 1 // 订单支付
-	UserIncomeGift = 2 // 礼物收入
+	CapitalPaymentOrder       = 1 // 订单支付
+	CapitalRefundOrder        = 2 // 订单退款
+	CapitalPaymentRecharge    = 3 // 充值支付
+	CapitalWithdrawCommission = 4 // 佣金提现
 )
 
 const (
@@ -22,12 +24,6 @@ const (
 	BillTypeOrder                = 3 // 购买商品
 	BillTypeSettlementCommission = 3 // 佣金结算
 	BillTypeWithdrawCommission   = 4 // 佣金提现
-)
-
-const (
-	RechargeTypeAlyPay = 1 // 支付宝
-	RechargeTypeWechat = 2 // 微信
-	RechargeTypeManual = 3 // 客服预存
 )
 
 const (

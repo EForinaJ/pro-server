@@ -15,7 +15,7 @@ type SysBalance struct {
 	Related    string      `json:"related"    orm:"related"     description:""` //
 	After      float64     `json:"after"      orm:"after"       description:""` //
 	Before     float64     `json:"before"     orm:"before"      description:""` //
-	Money      float64     `json:"money"      orm:"money"       description:""` //
+	Amount     float64     `json:"amount"     orm:"amount"      description:""` //
 	Mode       int         `json:"mode"       orm:"mode"        description:""` //
 	Type       int         `json:"type"       orm:"type"        description:""` //
 	Remark     string      `json:"remark"     orm:"remark"      description:""` //

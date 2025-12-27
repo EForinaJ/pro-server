@@ -15,7 +15,7 @@ type SysUserBill struct {
 	RelatedId  int64       `json:"relatedId"  orm:"related_id"  description:""` //
 	Code       string      `json:"code"       orm:"code"        description:""` //
 	Type       int         `json:"type"       orm:"type"        description:""` //
-	Money      float64     `json:"money"      orm:"money"       description:""` //
+	Amount     float64     `json:"amount"     orm:"amount"      description:""` //
 	Mode       int         `json:"mode"       orm:"mode"        description:""` //
 	CreateTime *gtime.Time `json:"createTime" orm:"create_time" description:""` //
 }

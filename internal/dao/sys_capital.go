@@ -8,19 +8,19 @@ import (
 	"server/internal/dao/internal"
 )
 
-// internalSysRefundDao is an internal type for wrapping the internal DAO implementation.
-type internalSysRefundDao = *internal.SysRefundDao
+// internalSysCapitalDao is an internal type for wrapping the internal DAO implementation.
+type internalSysCapitalDao = *internal.SysCapitalDao
 
-// sysRefundDao is the data access object for the table sys_refund.
+// sysCapitalDao is the data access object for the table sys_capital.
 // You can define custom methods on it to extend its functionality as needed.
-type sysRefundDao struct {
-	internalSysRefundDao
+type sysCapitalDao struct {
+	internalSysCapitalDao
 }
 
 var (
-	// SysRefund is a globally accessible object for table sys_refund operations.
-	SysRefund = sysRefundDao{
-		internal.NewSysRefundDao(),
+	// SysCapital is a globally accessible object for table sys_capital operations.
+	SysCapital = sysCapitalDao{
+		internal.NewSysCapitalDao(),
 	}
 )
 

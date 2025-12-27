@@ -45,7 +45,7 @@ func (s *sWithdraw) Apply(ctx context.Context, req *dto_withdraw.Apply) (err err
 			return utils_error.Err(response.DB_SAVE_ERROR)
 		}
 
-		money := decimal.
+		amount := decimal.
 			NewFromFloat(gconv.Float64(withdraw.GMap().Get(dao.SysWithdraw.Columns().Amount)))
 
 		// 修改佣金
@@ -56,7 +56,7 @@ func (s *sWithdraw) Apply(ctx context.Context, req *dto_withdraw.Apply) (err err
 		if err != nil {
 			return utils_error.Err(response.DB_SAVE_ERROR)
 		}
-		newCommission := decimal.NewFromFloat(commission.Float64()).Sub(money)
+		newCommission := decimal.NewFromFloat(commission.Float64()).Sub(amount)
 		_, err = tx.Model(dao.SysUser.Table()).
 			Where(dao.SysUser.Columns().Id, withdraw.GMap().Get(dao.SysWithdraw.Columns().WitkeyId)).
 			Data(g.Map{
@@ -70,7 +70,7 @@ func (s *sWithdraw) Apply(ctx context.Context, req *dto_withdraw.Apply) (err err
 			dao.SysCommission.Columns().WitkeyId:   withdraw.GMap().Get(dao.SysWithdraw.Columns().WitkeyId),
 			dao.SysCommission.Columns().Before:     commission,
 			dao.SysCommission.Columns().After:      newCommission,
-			dao.SysCommission.Columns().Money:      money,
+			dao.SysCommission.Columns().Amount:     amount,
 			dao.SysCommission.Columns().Mode:       consts.Sub,
 			dao.SysCommission.Columns().CreateTime: gtime.Now(),
 			dao.SysCommission.Columns().Type:       consts.WitkeyChangeCommissionTypeWithdraw,
@@ -86,13 +86,26 @@ func (s *sWithdraw) Apply(ctx context.Context, req *dto_withdraw.Apply) (err err
 		if err != nil {
 			return utils_error.Err(response.DB_SAVE_ERROR)
 		}
+		//  添加支付日志
+		_, err = tx.Model(dao.SysCapital.Table()).Data(g.Map{
+			dao.SysCapital.Columns().CreateTime: gtime.Now(),
+			dao.SysCapital.Columns().Code:       utils_snow.GetCode(ctx, consts.PM),
+			dao.SysCapital.Columns().Related:    withdraw.GMap().Get(dao.SysWithdraw.Columns().Code),
+			dao.SysCapital.Columns().Amount:     amount,
+			dao.SysCapital.Columns().Type:       consts.CapitalWithdrawCommission,
+			dao.SysCapital.Columns().Mode:       consts.PayModePersonalTransfer,
+			dao.SysCapital.Columns().UserId:     userId,
+		}).Insert()
+		if err != nil {
+			return utils_error.Err(response.DB_SAVE_ERROR)
+		}
 		_, err = tx.Model(dao.SysUserBill.Table()).
 			Data(g.Map{
 				dao.SysUserBill.Columns().UserId:     userId,
 				dao.SysUserBill.Columns().RelatedId:  req.Id,
 				dao.SysUserBill.Columns().Code:       utils_snow.GetCode(ctx, consts.BL),
 				dao.SysUserBill.Columns().Type:       consts.BillTypeWithdrawCommission,
-				dao.SysUserBill.Columns().Money:      money,
+				dao.SysUserBill.Columns().Amount:     amount,
 				dao.SysUserBill.Columns().Mode:       consts.Sub,
 				dao.SysUserBill.Columns().CreateTime: gtime.Now(),
 			}).Insert()

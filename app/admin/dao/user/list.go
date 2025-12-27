@@ -20,15 +20,6 @@ type OptionsList struct {
 	Name string `json:"name" dc:"昵称"`
 }
 
-type RechargeList struct {
-	Id         int64       `json:"id" dc:"ID"`
-	Code       string      `json:"code" dc:"充值号"`
-	Money      float64     `json:"money" dc:"金额"`     //
-	PayType    int         `json:"payType" dc:"充值方式"` //
-	Status     int         `json:"status" dc:"状态"`
-	CreateTime *gtime.Time `json:"createTime" dc:"创建时间"`
-}
-
 type BalanceList struct {
 	Id         int64       `json:"id" dc:"ID"`
 	Related    string      `json:"related" dc:"关联订单"`
@@ -36,7 +27,7 @@ type BalanceList struct {
 	Mode       int         `json:"mode" dc:"组别方式"`
 	After      float64     `json:"after" dc:"变动前"`
 	Before     float64     `json:"before" dc:"变动后"`
-	Money      float64     `json:"money" dc:"变动数量"`
+	Amount     float64     `json:"amount" dc:"变动数量"`
 	Remark     string      `json:"remark" dc:"原因"`
 	CreateTime *gtime.Time `json:"createTime" dc:"创建时间"`
 }

@@ -25,7 +25,7 @@ type CommissionList struct {
 	Mode       int         `json:"mode" dc:"组别方式"`
 	After      float64     `json:"after" dc:"变动前"`
 	Before     float64     `json:"before" dc:"变动后"`
-	Money      float64     `json:"money" dc:"变动数量"`
+	Amount     float64     `json:"amount" dc:"变动数量"`
 	Remark     string      `json:"remark" dc:"原因"`
 	CreateTime *gtime.Time `json:"createTime" dc:"创建时间"`
 }

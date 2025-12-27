@@ -56,7 +56,7 @@ func (s *sOrder) Paid(ctx context.Context, id int64) (err error) {
 			dao.SysUserBill.Columns().RelatedId:  id,
 			dao.SysUserBill.Columns().Code:       utils_snow.GetCode(ctx, consts.BL),
 			dao.SysUserBill.Columns().Type:       consts.BillTypeOrder,
-			dao.SysUserBill.Columns().Money:      order.GMap().Get(dao.SysOrder.Columns().ActualAmount),
+			dao.SysUserBill.Columns().Amount:     order.GMap().Get(dao.SysOrder.Columns().ActualAmount),
 			dao.SysUserBill.Columns().Mode:       consts.Sub,
 			dao.SysUserBill.Columns().CreateTime: gtime.Now(),
 		}).Insert()
@@ -64,13 +64,14 @@ func (s *sOrder) Paid(ctx context.Context, id int64) (err error) {
 		return utils_error.Err(response.DB_SAVE_ERROR)
 	}
 	//  添加支付日志
-	_, err = tx.Model(dao.SysPayment.Table()).Data(g.Map{
-		dao.SysPayment.Columns().CreateTime: gtime.Now(),
-		dao.SysPayment.Columns().Code:       utils_snow.GetCode(ctx, consts.PM),
-		dao.SysPayment.Columns().RelatedId:  id,
-		dao.SysPayment.Columns().Money:      order.GMap().Get(dao.SysOrder.Columns().ActualAmount),
-		dao.SysPayment.Columns().Type:       consts.PaymentOrder,
-		dao.SysPayment.Columns().Mode:       consts.PayModePersonalTransfer,
+	_, err = tx.Model(dao.SysCapital.Table()).Data(g.Map{
+		dao.SysCapital.Columns().CreateTime: gtime.Now(),
+		dao.SysCapital.Columns().Code:       utils_snow.GetCode(ctx, consts.PM),
+		dao.SysCapital.Columns().Related:    order.GMap().Get(dao.SysOrder.Columns().Code),
+		dao.SysCapital.Columns().Amount:     order.GMap().Get(dao.SysOrder.Columns().ActualAmount),
+		dao.SysCapital.Columns().Type:       consts.CapitalPaymentOrder,
+		dao.SysCapital.Columns().Mode:       consts.PayModePersonalTransfer,
+		dao.SysCapital.Columns().UserId:     order.GMap().Get(dao.SysOrder.Columns().UserId),
 	}).Insert()
 	if err != nil {
 		return utils_error.Err(response.DB_SAVE_ERROR)

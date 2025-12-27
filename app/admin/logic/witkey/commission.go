@@ -34,7 +34,7 @@ func (s *sWitkey) ChangeCommission(ctx context.Context, req *dto_witkey.Commissi
 	amount := decimal.NewFromFloat(commission.Float64())
 	entity := g.Map{
 		dao.SysCommission.Columns().After:      commission,
-		dao.SysCommission.Columns().Money:      req.Money,
+		dao.SysCommission.Columns().Amount:     req.Amount,
 		dao.SysCommission.Columns().Mode:       req.Mode,
 		dao.SysCommission.Columns().WitkeyId:   req.Id,
 		dao.SysCommission.Columns().CreateTime: gtime.Now(),
@@ -43,7 +43,7 @@ func (s *sWitkey) ChangeCommission(ctx context.Context, req *dto_witkey.Commissi
 
 	switch req.Mode {
 	case consts.FundLogModeAdd:
-		newCommission := amount.Add(decimal.NewFromFloat(req.Money))
+		newCommission := amount.Add(decimal.NewFromFloat(req.Amount))
 		_, err = tx.Model(dao.SysWitkey.Table()).WherePri(req.Id).Data(g.Map{
 			dao.SysWitkey.Columns().Commission: newCommission,
 		}).Update()
@@ -54,7 +54,7 @@ func (s *sWitkey) ChangeCommission(ctx context.Context, req *dto_witkey.Commissi
 		entity[dao.SysCommission.Columns().Remark] = "系统增加余额"
 		entity[dao.SysCommission.Columns().Related] = "系统增加余额"
 	case consts.FundLogModeSub:
-		newCommission := amount.Sub(decimal.NewFromFloat(req.Money))
+		newCommission := amount.Sub(decimal.NewFromFloat(req.Amount))
 		_, err = tx.Model(dao.SysWitkey.Table()).WherePri(req.Id).Data(g.Map{
 			dao.SysWitkey.Columns().Commission: newCommission,
 		}).Update()

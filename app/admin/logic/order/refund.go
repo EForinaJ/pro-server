@@ -46,26 +46,28 @@ func (s *sOrder) Refund(ctx context.Context, req *dto_order.Refund) (err error) 
 
 	_, err = tx.Model(dao.SysAftersales.Table()).
 		Data(g.Map{
-			dao.SysAftersales.Columns().OrderId:  req.Id,
-			dao.SysAftersales.Columns().Code:     utils_snow.GetCode(ctx, consts.AS),
-			dao.SysAftersales.Columns().Amount:   req.Money,
-			dao.SysAftersales.Columns().Type:     req.Type,
-			dao.SysAftersales.Columns().ManageId: ctx.Value("userId"),
-			dao.SysAftersales.Columns().Reason:   req.Reason,
-			dao.SysAftersales.Columns().Status:   consts.StatusSuccess,
-			dao.SysUserBill.Columns().CreateTime: gtime.Now(),
+			dao.SysAftersales.Columns().OrderId:    req.Id,
+			dao.SysAftersales.Columns().Code:       utils_snow.GetCode(ctx, consts.AS),
+			dao.SysAftersales.Columns().Amount:     req.Amount,
+			dao.SysAftersales.Columns().Type:       req.Type,
+			dao.SysAftersales.Columns().ManageId:   ctx.Value("userId"),
+			dao.SysAftersales.Columns().Reason:     req.Reason,
+			dao.SysAftersales.Columns().Status:     consts.StatusSuccess,
+			dao.SysAftersales.Columns().CreateTime: gtime.Now(),
 		}).Insert()
 	if err != nil {
 		return utils_error.Err(response.DB_SAVE_ERROR)
 	}
-	_, err = tx.Model(dao.SysRefund.Table()).
-		Data(g.Map{
-			dao.SysRefund.Columns().OrderId:      req.Id,
-			dao.SysRefund.Columns().Mode:         consts.PayModePersonalTransfer,
-			dao.SysRefund.Columns().Money:        req.Money,
-			dao.SysRefund.Columns().ManageId:     ctx.Value("userId"),
-			dao.SysUserBill.Columns().CreateTime: gtime.Now(),
-		}).Insert()
+	//  添加支付日志
+	_, err = tx.Model(dao.SysCapital.Table()).Data(g.Map{
+		dao.SysCapital.Columns().CreateTime: gtime.Now(),
+		dao.SysCapital.Columns().Code:       utils_snow.GetCode(ctx, consts.PM),
+		dao.SysCapital.Columns().Related:    order.GMap().Get(dao.SysOrder.Columns().Code),
+		dao.SysCapital.Columns().Amount:     order.GMap().Get(dao.SysOrder.Columns().ActualAmount),
+		dao.SysCapital.Columns().Type:       consts.CapitalRefundOrder,
+		dao.SysCapital.Columns().Mode:       consts.PayModePersonalTransfer,
+		dao.SysCapital.Columns().UserId:     order.GMap().Get(dao.SysOrder.Columns().UserId),
+	}).Insert()
 	if err != nil {
 		return utils_error.Err(response.DB_SAVE_ERROR)
 	}
@@ -77,7 +79,7 @@ func (s *sOrder) Refund(ctx context.Context, req *dto_order.Refund) (err error) 
 			dao.SysUserBill.Columns().RelatedId:  req.Id,
 			dao.SysUserBill.Columns().Code:       utils_snow.GetCode(ctx, consts.BL),
 			dao.SysUserBill.Columns().Type:       consts.BillTypeRefund,
-			dao.SysUserBill.Columns().Money:      req.Money,
+			dao.SysUserBill.Columns().Amount:     req.Amount,
 			dao.SysUserBill.Columns().Mode:       consts.Add,
 			dao.SysUserBill.Columns().CreateTime: gtime.Now(),
 		}).Insert()

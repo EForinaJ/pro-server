@@ -25,7 +25,7 @@ type SysCommissionColumns struct {
 	Related    string //
 	After      string //
 	Before     string //
-	Money      string //
+	Amount     string //
 	Mode       string //
 	Type       string //
 	Remark     string //
@@ -39,7 +39,7 @@ var sysCommissionColumns = SysCommissionColumns{
 	Related:    "related",
 	After:      "after",
 	Before:     "before",
-	Money:      "money",
+	Amount:     "amount",
 	Mode:       "mode",
 	Type:       "type",
 	Remark:     "remark",

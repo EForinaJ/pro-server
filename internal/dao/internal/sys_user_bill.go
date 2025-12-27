@@ -25,7 +25,7 @@ type SysUserBillColumns struct {
 	RelatedId  string //
 	Code       string //
 	Type       string //
-	Money      string //
+	Amount     string //
 	Mode       string //
 	CreateTime string //
 }
@@ -37,7 +37,7 @@ var sysUserBillColumns = SysUserBillColumns{
 	RelatedId:  "related_id",
 	Code:       "code",
 	Type:       "type",
-	Money:      "money",
+	Amount:     "amount",
 	Mode:       "mode",
 	CreateTime: "create_time",
 }

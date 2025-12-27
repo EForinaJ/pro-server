@@ -81,13 +81,13 @@ func (s *sRecharge) Notify(ctx context.Context) (err error) {
 		Fields(
 			dao.SysRecharge.Columns().Id,
 			dao.SysRecharge.Columns().UserId,
-			dao.SysRecharge.Columns().Money,
+			dao.SysRecharge.Columns().Amount,
 			dao.SysRecharge.Columns().Status).
 		One()
 	if err != nil {
 		return utils_error.Err(response.DB_READ_ERROR)
 	}
-	orderMoney := decimal.NewFromFloat(gconv.Float64(recharge.GMap().Get(dao.SysRecharge.Columns().Money)))
+	orderMoney := decimal.NewFromFloat(gconv.Float64(recharge.GMap().Get(dao.SysRecharge.Columns().Amount)))
 	payTotal := decimal.NewFromFloat(gconv.Float64(result.Amount.Total)).Div(decimal.NewFromFloat(100))
 	if !orderMoney.Equal(payTotal) {
 		return utils_error.Err(response.PAY_ERROR)
@@ -138,7 +138,7 @@ func (s *sRecharge) Notify(ctx context.Context) (err error) {
 		dao.SysUserBill.Columns().RelatedId:  recharge.GMap().Get(dao.SysRecharge.Columns().Id),
 		dao.SysUserBill.Columns().Code:       utils_snow.GetCode(ctx, consts.BL),
 		dao.SysUserBill.Columns().Type:       consts.BillTypeRecharge,
-		dao.SysUserBill.Columns().Money:      orderMoney,
+		dao.SysUserBill.Columns().Amount:     orderMoney,
 		dao.SysUserBill.Columns().Mode:       consts.Add,
 		dao.SysUserBill.Columns().CreateTime: gtime.Now(),
 	}

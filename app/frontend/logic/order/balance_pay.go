@@ -74,7 +74,7 @@ func (s *sOrder) BalancePay(ctx context.Context, id int64) (err error) {
 		dao.SysUserBill.Columns().RelatedId:  id,
 		dao.SysUserBill.Columns().Code:       utils_snow.GetCode(ctx, consts.BL),
 		dao.SysUserBill.Columns().Type:       consts.BillTypeOrder,
-		dao.SysUserBill.Columns().Money:      actualAmount,
+		dao.SysUserBill.Columns().Amount:     actualAmount,
 		dao.SysUserBill.Columns().Mode:       consts.Sub,
 		dao.SysUserBill.Columns().CreateTime: gtime.Now(),
 	}

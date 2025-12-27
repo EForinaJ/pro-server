@@ -29,8 +29,8 @@ func (s *sRecharge) WechatMiniProgram(ctx context.Context, req *dto_recharge.Wec
 	code := utils_snow.GetCode(ctx, consts.CZ)
 	entity := g.Map{
 		dao.SysRecharge.Columns().Code:       code,
-		dao.SysRecharge.Columns().PayType:    consts.RechargeTypeWechat,
-		dao.SysRecharge.Columns().Money:      req.Money,
+		dao.SysRecharge.Columns().PayMode:    consts.PayModeWechatPay,
+		dao.SysRecharge.Columns().Amount:     req.Money,
 		dao.SysRecharge.Columns().UserId:     ctx.Value("userId"),
 		dao.SysRecharge.Columns().Status:     consts.PayStatusPending,
 		dao.SysRecharge.Columns().CreateTime: gtime.Now(),

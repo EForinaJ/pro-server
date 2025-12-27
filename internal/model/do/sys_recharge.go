@@ -15,8 +15,8 @@ type SysRecharge struct {
 	Id         interface{} //
 	UserId     interface{} //
 	Code       interface{} //
-	Money      interface{} //
-	PayType    interface{} //
+	Amount     interface{} //
+	PayMode    interface{} //
 	Status     interface{} //
 	CreateTime *gtime.Time //
 	UpdateTime *gtime.Time //

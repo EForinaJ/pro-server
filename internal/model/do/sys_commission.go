@@ -17,7 +17,7 @@ type SysCommission struct {
 	Related    interface{} //
 	After      interface{} //
 	Before     interface{} //
-	Money      interface{} //
+	Amount     interface{} //
 	Mode       interface{} //
 	Type       interface{} //
 	Remark     interface{} //

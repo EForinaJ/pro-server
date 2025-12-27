@@ -21,7 +21,7 @@ func (s *sOrder) CheckRefund(ctx context.Context, req *dto_order.Refund) (err er
 		return utils_error.Err(response.DB_READ_ERROR)
 	}
 
-	if !decimal.NewFromFloat(req.Money).LessThanOrEqual(decimal.NewFromFloat(orderActualAmount.Float64())) {
+	if !decimal.NewFromFloat(req.Amount).LessThanOrEqual(decimal.NewFromFloat(orderActualAmount.Float64())) {
 		return utils_error.ErrMessage(response.FAILD, "退款金额超过实付金额")
 	}
 

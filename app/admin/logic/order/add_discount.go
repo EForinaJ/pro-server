@@ -30,11 +30,11 @@ func (s *sOrder) AddDiscount(ctx context.Context, req *dto_order.AddDiscount) (e
 	if err != nil {
 		return utils_error.Err(response.DB_READ_ERROR)
 	}
-	discountAmout := decimal.NewFromFloat(req.Money)
+	discountAmout := decimal.NewFromFloat(req.Amount)
 	actualAmount := decimal.NewFromFloat(orderTotal.Float64()).Sub(discountAmout)
 
 	_, err = tx.Model(dao.SysOrder.Table()).WherePri(req.Id).Data(g.Map{
-		dao.SysOrder.Columns().DiscountAmount: req.Money,
+		dao.SysOrder.Columns().DiscountAmount: req.Amount,
 		dao.SysOrder.Columns().ActualAmount:   actualAmount,
 	}).Update()
 	if err != nil {

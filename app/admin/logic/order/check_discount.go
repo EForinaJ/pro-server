@@ -22,7 +22,7 @@ func (s *sOrder) CheckDiscount(ctx context.Context, req *dto_order.AddDiscount) 
 		return utils_error.Err(response.DB_READ_ERROR)
 	}
 
-	if !decimal.NewFromFloat(req.Money).LessThanOrEqual(decimal.NewFromFloat(gconv.Float64(order.GMap().Get(dao.SysOrder.Columns().TotalAmount)))) {
+	if !decimal.NewFromFloat(req.Amount).LessThanOrEqual(decimal.NewFromFloat(gconv.Float64(order.GMap().Get(dao.SysOrder.Columns().TotalAmount)))) {
 		return utils_error.ErrMessage(response.FAILD, "优惠金额超出订单总额")
 	}
 

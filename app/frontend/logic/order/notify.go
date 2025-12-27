@@ -128,7 +128,7 @@ func (s *sOrder) Notify(ctx context.Context) (err error) {
 		dao.SysUserBill.Columns().RelatedId:  order.GMap().Get(dao.SysOrder.Columns().Id),
 		dao.SysUserBill.Columns().Code:       utils_snow.GetCode(ctx, consts.BL),
 		dao.SysUserBill.Columns().Type:       consts.BillTypeOrder,
-		dao.SysUserBill.Columns().Money:      actualAmount,
+		dao.SysUserBill.Columns().Amount:     actualAmount,
 		dao.SysUserBill.Columns().Mode:       consts.Sub,
 		dao.SysUserBill.Columns().CreateTime: gtime.Now(),
 	}

@@ -35,7 +35,7 @@ func (s *sUser) ChangeBalance(ctx context.Context, req *dto_user.ChangeBalance) 
 	amount := decimal.NewFromFloat(balance.Float64())
 	entity := g.Map{
 		dao.SysBalance.Columns().After:      balance,
-		dao.SysBalance.Columns().Money:      req.Money,
+		dao.SysBalance.Columns().Amount:     req.Amount,
 		dao.SysBalance.Columns().Mode:       req.Mode,
 		dao.SysBalance.Columns().UserId:     req.Id,
 		dao.SysBalance.Columns().CreateTime: gtime.Now(),
@@ -44,7 +44,7 @@ func (s *sUser) ChangeBalance(ctx context.Context, req *dto_user.ChangeBalance) 
 
 	switch req.Mode {
 	case consts.FundLogModeAdd:
-		newBalance := amount.Add(decimal.NewFromFloat(req.Money))
+		newBalance := amount.Add(decimal.NewFromFloat(req.Amount))
 		_, err = tx.Model(dao.SysUser.Table()).WherePri(req.Id).Data(g.Map{
 			dao.SysUser.Columns().Balance: newBalance,
 		}).Update()
@@ -55,7 +55,7 @@ func (s *sUser) ChangeBalance(ctx context.Context, req *dto_user.ChangeBalance) 
 		entity[dao.SysBalance.Columns().Remark] = "系统增加余额"
 		entity[dao.SysBalance.Columns().Related] = "系统增加余额"
 	case consts.FundLogModeSub:
-		newBalance := amount.Sub(decimal.NewFromFloat(req.Money))
+		newBalance := amount.Sub(decimal.NewFromFloat(req.Amount))
 		_, err = tx.Model(dao.SysUser.Table()).WherePri(req.Id).Data(g.Map{
 			dao.SysUser.Columns().Balance: newBalance,
 		}).Update()

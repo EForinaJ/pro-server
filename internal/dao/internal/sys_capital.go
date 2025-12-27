@@ -11,68 +11,68 @@ import (
 	"github.com/gogf/gf/v2/frame/g"
 )
 
-// SysWitkeyBillDao is the data access object for the table sys_witkey_bill.
-type SysWitkeyBillDao struct {
-	table   string               // table is the underlying table name of the DAO.
-	group   string               // group is the database configuration group name of the current DAO.
-	columns SysWitkeyBillColumns // columns contains all the column names of Table for convenient usage.
+// SysCapitalDao is the data access object for the table sys_capital.
+type SysCapitalDao struct {
+	table   string            // table is the underlying table name of the DAO.
+	group   string            // group is the database configuration group name of the current DAO.
+	columns SysCapitalColumns // columns contains all the column names of Table for convenient usage.
 }
 
-// SysWitkeyBillColumns defines and stores column names for the table sys_witkey_bill.
-type SysWitkeyBillColumns struct {
+// SysCapitalColumns defines and stores column names for the table sys_capital.
+type SysCapitalColumns struct {
 	Id         string //
-	WitkeyId   string //
-	RelatedId  string //
+	UserId     string //
+	Related    string //
 	Code       string //
 	Type       string //
-	Money      string //
+	Amount     string //
 	Mode       string //
 	CreateTime string //
 }
 
-// sysWitkeyBillColumns holds the columns for the table sys_witkey_bill.
-var sysWitkeyBillColumns = SysWitkeyBillColumns{
+// sysCapitalColumns holds the columns for the table sys_capital.
+var sysCapitalColumns = SysCapitalColumns{
 	Id:         "id",
-	WitkeyId:   "witkey_id",
-	RelatedId:  "related_id",
+	UserId:     "user_id",
+	Related:    "related",
 	Code:       "code",
 	Type:       "type",
-	Money:      "money",
+	Amount:     "amount",
 	Mode:       "mode",
 	CreateTime: "create_time",
 }
 
-// NewSysWitkeyBillDao creates and returns a new DAO object for table data access.
-func NewSysWitkeyBillDao() *SysWitkeyBillDao {
-	return &SysWitkeyBillDao{
+// NewSysCapitalDao creates and returns a new DAO object for table data access.
+func NewSysCapitalDao() *SysCapitalDao {
+	return &SysCapitalDao{
 		group:   "default",
-		table:   "sys_witkey_bill",
-		columns: sysWitkeyBillColumns,
+		table:   "sys_capital",
+		columns: sysCapitalColumns,
 	}
 }
 
 // DB retrieves and returns the underlying raw database management object of the current DAO.
-func (dao *SysWitkeyBillDao) DB() gdb.DB {
+func (dao *SysCapitalDao) DB() gdb.DB {
 	return g.DB(dao.group)
 }
 
 // Table returns the table name of the current DAO.
-func (dao *SysWitkeyBillDao) Table() string {
+func (dao *SysCapitalDao) Table() string {
 	return dao.table
 }
 
 // Columns returns all column names of the current DAO.
-func (dao *SysWitkeyBillDao) Columns() SysWitkeyBillColumns {
+func (dao *SysCapitalDao) Columns() SysCapitalColumns {
 	return dao.columns
 }
 
 // Group returns the database configuration group name of the current DAO.
-func (dao *SysWitkeyBillDao) Group() string {
+func (dao *SysCapitalDao) Group() string {
 	return dao.group
 }
 
 // Ctx creates and returns a Model for the current DAO. It automatically sets the context for the current operation.
-func (dao *SysWitkeyBillDao) Ctx(ctx context.Context) *gdb.Model {
+func (dao *SysCapitalDao) Ctx(ctx context.Context) *gdb.Model {
 	return dao.DB().Model(dao.table).Safe().Ctx(ctx)
 }
 
@@ -82,6 +82,6 @@ func (dao *SysWitkeyBillDao) Ctx(ctx context.Context) *gdb.Model {
 //
 // Note: Do not commit or roll back the transaction in function f,
 // as it is automatically handled by this function.
-func (dao *SysWitkeyBillDao) Transaction(ctx context.Context, f func(ctx context.Context, tx gdb.TX) error) (err error) {
+func (dao *SysCapitalDao) Transaction(ctx context.Context, f func(ctx context.Context, tx gdb.TX) error) (err error) {
 	return dao.Ctx(ctx).Transaction(ctx, f)
 }

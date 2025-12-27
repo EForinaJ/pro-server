@@ -19,7 +19,7 @@ func (s *sWitkey) CheckCommission(ctx context.Context, req *dto_witkey.Commissio
 		return utils_error.Err(response.DB_READ_ERROR)
 	}
 
-	if !decimal.NewFromFloat(req.Money).LessThanOrEqual(decimal.NewFromFloat(commission.Float64())) {
+	if !decimal.NewFromFloat(req.Amount).LessThanOrEqual(decimal.NewFromFloat(commission.Float64())) {
 		return utils_error.ErrMessage(response.FAILD, "佣金不足，减少金额超出佣金")
 	}
 	return

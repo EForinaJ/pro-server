@@ -20,13 +20,10 @@ func (s *sRecharge) GetList(ctx context.Context, req *dto_recharge.Query) (total
 	if req.Code != "" {
 		m = m.WhereIn(dao.SysRecharge.Columns().Code, req.Code)
 	}
-	if req.UserId != 0 {
-		m = m.WhereIn(dao.SysRecharge.Columns().UserId, req.UserId)
-	}
 
-	if req.Phone != "" {
+	if req.Name != "" {
 		id, err := dao.SysUser.Ctx(ctx).
-			Where(dao.SysUser.Columns().Phone, req.Phone).Value(dao.SysUser.Columns().Id)
+			Where(dao.SysUser.Columns().Name, req.Name).Value(dao.SysUser.Columns().Id)
 		if err != nil {
 			return 0, nil, utils_error.Err(response.DB_READ_ERROR)
 		}
@@ -59,7 +56,7 @@ func (s *sRecharge) GetList(ctx context.Context, req *dto_recharge.Query) (total
 		if err != nil {
 			return 0, nil, utils_error.Err(response.DB_READ_ERROR)
 		}
-		entity.Name = user.String()
+		entity.User = user.String()
 
 		res[i] = entity
 	}

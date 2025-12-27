@@ -73,7 +73,7 @@ func (s *sSettlement) Apply(ctx context.Context, req *dto_settlement.Apply) (err
 			dao.SysCommission.Columns().WitkeyId:   obj.GMap().Get(dao.SysSettlement.Columns().WitkeyId),
 			dao.SysCommission.Columns().Before:     witkeyCommission,
 			dao.SysCommission.Columns().After:      newCommission,
-			dao.SysCommission.Columns().Money:      commission,
+			dao.SysCommission.Columns().Amount:     commission,
 			dao.SysCommission.Columns().Mode:       consts.Add,
 			dao.SysCommission.Columns().CreateTime: gtime.Now(),
 			dao.SysCommission.Columns().Type:       consts.WitkeyChangeCommissionTypeSettlement,
@@ -95,7 +95,7 @@ func (s *sSettlement) Apply(ctx context.Context, req *dto_settlement.Apply) (err
 				dao.SysUserBill.Columns().RelatedId:  req.Id,
 				dao.SysUserBill.Columns().Code:       utils_snow.GetCode(ctx, consts.BL),
 				dao.SysUserBill.Columns().Type:       consts.BillTypeSettlementCommission,
-				dao.SysUserBill.Columns().Money:      commission,
+				dao.SysUserBill.Columns().Amount:     commission,
 				dao.SysUserBill.Columns().Mode:       consts.Add,
 				dao.SysUserBill.Columns().CreateTime: gtime.Now(),
 			}).Insert()

@@ -2,6 +2,7 @@ package router
 
 import (
 	"server/app/admin/controller/account"
+	"server/app/admin/controller/capital"
 	"server/app/admin/controller/category"
 	"server/app/admin/controller/distribute"
 	"server/app/admin/controller/level"
@@ -10,7 +11,6 @@ import (
 
 	"server/app/admin/controller/aftersales"
 	"server/app/admin/controller/auth"
-	"server/app/admin/controller/bill"
 	"server/app/admin/controller/game"
 	"server/app/admin/controller/recharge"
 
@@ -70,10 +70,11 @@ func LoadRouter(s *ghttp.Server) {
 			distribute.NewV1(),
 			settlement.NewV1(),
 			aftersales.NewV1(),
-			recharge.NewV1(),
 
-			bill.NewV1(),
+			recharge.NewV1(),
 			withdraw.NewV1(),
+			capital.NewV1(),
+
 			system.NewV1(),
 		// grade.NewV1(),
 		// vip.NewV1(),

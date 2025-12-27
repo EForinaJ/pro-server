@@ -26,6 +26,7 @@ type SysOrder struct {
 	PayAmount      float64     `json:"payAmount"      orm:"pay_amount"      description:""`     //
 	Requirements   string      `json:"requirements"   orm:"requirements"    description:""`     //
 	Status         int         `json:"status"         orm:"status"          description:""`     //
+	PayCode        string      `json:"payCode"        orm:"pay_code"        description:""`     //
 	PayMode        int         `json:"payMode"        orm:"pay_mode"        description:""`     //
 	PayStatus      int         `json:"payStatus"      orm:"pay_status"      description:""`     //
 	PayTime        *gtime.Time `json:"payTime"        orm:"pay_time"        description:""`     //

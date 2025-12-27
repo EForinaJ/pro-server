@@ -10,7 +10,7 @@ import (
 type IUser interface {
 	CheckUniquePhone(ctx context.Context, phone string) (res bool, err error)
 	CheckUniquePhoneId(ctx context.Context, req *dto_user.Edit) (res bool, err error)
-	CheckBalance(ctx context.Context, id int64, money float64) (res bool, err error)
+	CheckBalance(ctx context.Context, req *dto_user.ChangeBalance) (err error)
 
 	GetEdit(ctx context.Context, id int64) (res *dao_user.Edit, err error)
 	GetDetail(ctx context.Context, id int64) (res *dao_user.Detail, err error)
@@ -22,7 +22,6 @@ type IUser interface {
 	Recharge(ctx context.Context, req *dto_user.Recharge) (err error)
 
 	GetBalanceList(ctx context.Context, req *dto_user.BalanceQuery) (total int, res []*dao_user.BalanceList, err error)
-	GetRechargeList(ctx context.Context, req *dto_user.RechargeQuery) (total int, res []*dao_user.RechargeList, err error)
 
 	Delete(ctx context.Context, ids []int64) (err error)
 }

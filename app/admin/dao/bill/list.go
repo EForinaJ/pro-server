@@ -8,6 +8,6 @@ type List struct {
 	Code        string      `json:"code"   dc:"账单号"`
 	User        *User       `json:"user" dc:"下单用户"`
 	Type        int         `json:"type"   dc:"账单类型"`
-	Money       float64     `json:"money"   dc:"账单金额"`
+	Amount      float64     `json:"amount"   dc:"账单金额"`
 	CreateTime  *gtime.Time `json:"createTime" dc:"创建时间"`
 }

@@ -16,8 +16,8 @@ type GetListRes struct {
 	List  []*dao_recharge.List `json:"list" dc:"充值记录列表"`
 }
 
-type RevokeRechargeReq struct {
-	g.Meta `path:"/recharge/revoke" method:"post" tags:"充值" summary:"撤回预存充值"`
+type DeleteReq struct {
+	g.Meta `path:"/recharge/revoke" method:"post" tags:"充值" summary:"删除充值记录"`
 	Ids    []int64 `json:"ids" v:"required|array#ids不能为空|删除列表是一个数组"`
 }
-type RevokeRechargeRes struct{}
+type DeleteRes struct{}

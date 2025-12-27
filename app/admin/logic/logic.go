@@ -5,6 +5,7 @@ import (
 	_ "server/app/admin/logic/aftersales"
 	_ "server/app/admin/logic/auth"
 	_ "server/app/admin/logic/bill"
+	_ "server/app/admin/logic/capital"
 	_ "server/app/admin/logic/category"
 	_ "server/app/admin/logic/dict_data"
 	_ "server/app/admin/logic/dict_type"

@@ -12,5 +12,5 @@ import (
 
 type IRechargeV1 interface {
 	GetList(ctx context.Context, req *v1.GetListReq) (res *v1.GetListRes, err error)
-	RevokeRecharge(ctx context.Context, req *v1.RevokeRechargeReq) (res *v1.RevokeRechargeRes, err error)
+	Delete(ctx context.Context, req *v1.DeleteReq) (res *v1.DeleteRes, err error)
 }

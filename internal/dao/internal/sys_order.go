@@ -36,6 +36,7 @@ type SysOrderColumns struct {
 	PayAmount      string //
 	Requirements   string //
 	Status         string //
+	PayCode        string //
 	PayMode        string //
 	PayStatus      string //
 	PayTime        string //
@@ -64,6 +65,7 @@ var sysOrderColumns = SysOrderColumns{
 	PayAmount:      "pay_amount",
 	Requirements:   "requirements",
 	Status:         "status",
+	PayCode:        "pay_code",
 	PayMode:        "pay_mode",
 	PayStatus:      "pay_status",
 	PayTime:        "pay_time",

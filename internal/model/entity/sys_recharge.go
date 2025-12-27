@@ -13,8 +13,8 @@ type SysRecharge struct {
 	Id         int64       `json:"id"         orm:"id"          description:""` //
 	UserId     int64       `json:"userId"     orm:"user_id"     description:""` //
 	Code       string      `json:"code"       orm:"code"        description:""` //
-	Money      float64     `json:"money"      orm:"money"       description:""` //
-	PayType    int         `json:"payType"    orm:"pay_type"    description:""` //
+	Amount     float64     `json:"amount"     orm:"amount"      description:""` //
+	PayMode    int         `json:"payMode"    orm:"pay_mode"    description:""` //
 	Status     int         `json:"status"     orm:"status"      description:""` //
 	CreateTime *gtime.Time `json:"createTime" orm:"create_time" description:""` //
 	UpdateTime *gtime.Time `json:"updateTime" orm:"update_time" description:""` //

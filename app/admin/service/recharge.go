@@ -9,7 +9,7 @@ import (
 // 定义显示接口
 type IRecharge interface {
 	GetList(ctx context.Context, req *dto_recharge.Query) (total int, res []*dao_recharge.List, err error)
-	Revoke(ctx context.Context, ids []int64) (err error)
+	Delete(ctx context.Context, ids []int64) (err error)
 }
 
 // 定义接口变量

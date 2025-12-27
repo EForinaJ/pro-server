@@ -23,8 +23,8 @@ type SysRechargeColumns struct {
 	Id         string //
 	UserId     string //
 	Code       string //
-	Money      string //
-	PayType    string //
+	Amount     string //
+	PayMode    string //
 	Status     string //
 	CreateTime string //
 	UpdateTime string //
@@ -36,8 +36,8 @@ var sysRechargeColumns = SysRechargeColumns{
 	Id:         "id",
 	UserId:     "user_id",
 	Code:       "code",
-	Money:      "money",
-	PayType:    "pay_type",
+	Amount:     "amount",
+	PayMode:    "pay_mode",
 	Status:     "status",
 	CreateTime: "create_time",
 	UpdateTime: "update_time",
